@@ -81,85 +81,81 @@ function typePlaceholder() {
 }
 
 // Books data
-const books = [
+const quotes = [
     {
-        title: "Algorithms to Live By",
-        description: "A fascinating exploration of how computer algorithms apply to everyday human decision-making.",
-        link: "https://www.goodreads.com/book/show/25666050-algorithms-to-live-by", // Actual URL
-        img: "https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1454296875i/25666050.jpg"
+        name: "Albert Einstein",
+        quote: "Imagination is more important than knowledge. Knowledge is limited. Imagination encircles the world.",
+        img: "https://upload.wikimedia.org/wikipedia/commons/d/d3/Albert_Einstein_Head.jpg",
+        link: "https://en.wikipedia.org/wiki/Albert_Einstein"
     },
     {
-        title: "Introduction to Computer Science",
-        description: "A comprehensive guide for beginners to learn the fundamentals of computer science.",
-        link: "https://www.amazon.com/Introduction-Computer-Science/dp/1234567890", // Replace with actual URL
-        img: "https://via.placeholder.com/150"
+        name: "Marie Curie",
+        quote: "Be less curious about people and more curious about ideas.",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c8/Marie_Curie_c._1920s.jpg/330px-Marie_Curie_c._1920s.jpg",
+        link: "https://en.wikipedia.org/wiki/Marie_Curie"
     },
     {
-        title: "Data Structures and Algorithms",
-        description: "An essential book for mastering data structures and algorithms in computer programming.",
-        link: "https://www.amazon.com/Data-Structures-Algorithms/dp/0987654321", // Replace with actual URL
-        img: "https://via.placeholder.com/150"
+        name: "Isaac Newton",
+        quote: "If I have seen further, it is by standing on the shoulders of giants.",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Portrait_of_Sir_Isaac_Newton%2C_1689_%28brightened%29.jpg/330px-Portrait_of_Sir_Isaac_Newton%2C_1689_%28brightened%29.jpg",
+        link: "https://en.wikipedia.org/wiki/Isaac_Newton"
     },
     {
-        title: "Digital Logic Design",
-        description: "Understand the building blocks of digital electronics and computer systems.",
-        link: "https://www.bookstore.com/digital-logic-design", // Replace with actual URL
-        img: "https://via.placeholder.com/150"
+        name: "Stephen Hawking",
+        quote: "Intelligence is the ability to adapt to change.",
+        img: "https://upload.wikimedia.org/wikipedia/commons/e/eb/Stephen_Hawking.StarChild.jpg",
+        link: "https://en.wikipedia.org/wiki/Stephen_Hawking"
     },
     {
-        title: "Mathematics for Computer Science",
-        description: "A detailed book on discrete mathematics for students of computer science.",
-        link: "https://www.bookstore.com/mathematics-for-computer-science", // Replace with actual URL
-        img: "https://via.placeholder.com/150"
+        name: "Nelson Mandela",
+        quote: "It always seems impossible until it’s done.",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Nelson_Mandela_1994.jpg/330px-Nelson_Mandela_1994.jpg",
+        link: "https://en.wikipedia.org/wiki/Nelson_Mandela"
     },
     {
-        title: "Cybersecurity Basics",
-        description: "Learn the fundamental concepts of cybersecurity and how to protect online systems.",
-        link: "https://www.bookstore.com/cybersecurity-basics", // Replace with actual URL
-        img: "https://via.placeholder.com/150"
+        name: "Mahatma Gandhi",
+        quote: "Be the change that you wish to see in the world.",
+        img: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Mahatma-Gandhi%2C_studio%2C_1931.jpg/330px-Mahatma-Gandhi%2C_studio%2C_1931.jpg",
+        link: "https://en.wikipedia.org/wiki/Mahatma_Gandhi"
     }
 ];
 
-
-// Shuffle books and select 3 random ones
-function getRandomBooks() {
-    return books.sort(() => Math.random() - 0.5).slice(0, 3);
+// Shuffle quotes and select 3 random ones
+function getRandomQuotes() {
+    return quotes.sort(() => Math.random() - 0.5).slice(0, 3);
 }
 
-// Update cards dynamically
 // Update cards dynamically
 function updateCards() {
-    const randomBooks = getRandomBooks();
+    const randomQuotes = getRandomQuotes();
 
     // Update Card 1
-    document.getElementById("title1").textContent = randomBooks[0].title;
-    document.getElementById("desc1").textContent = randomBooks[0].description;
-    document.getElementById("title1").setAttribute("data-link", randomBooks[0].link);
-    document.getElementById("img1").src = randomBooks[0].img; // Update image source
+    document.getElementById("title1").textContent = randomQuotes[0].name;
+    document.getElementById("desc1").textContent = randomQuotes[0].quote;
+    document.getElementById("title1").setAttribute("data-link", randomQuotes[0].link);
+    document.getElementById("img1").src = randomQuotes[0].img;
 
     // Update Card 2
-    document.getElementById("title2").textContent = randomBooks[1].title;
-    document.getElementById("desc2").textContent = randomBooks[1].description;
-    document.getElementById("title2").setAttribute("data-link", randomBooks[1].link);
-    document.getElementById("img2").src = randomBooks[1].img; // Update image source
+    document.getElementById("title2").textContent = randomQuotes[1].name;
+    document.getElementById("desc2").textContent = randomQuotes[1].quote;
+    document.getElementById("title2").setAttribute("data-link", randomQuotes[1].link);
+    document.getElementById("img2").src = randomQuotes[1].img;
 
     // Update Card 3
-    document.getElementById("title3").textContent = randomBooks[2].title;
-    document.getElementById("desc3").textContent = randomBooks[2].description;
-    document.getElementById("title3").setAttribute("data-link", randomBooks[2].link);
-    document.getElementById("img3").src = randomBooks[2].img; // Update image source
+    document.getElementById("title3").textContent = randomQuotes[2].name;
+    document.getElementById("desc3").textContent = randomQuotes[2].quote;
+    document.getElementById("title3").setAttribute("data-link", randomQuotes[2].link);
+    document.getElementById("img3").src = randomQuotes[2].img;
 }
 
-
-// Redirect to book page
+// Redirect to profile page
 function goToBookPage(cardIndex) {
     const titleId = `title${cardIndex}`;
     const link = document.getElementById(titleId).getAttribute("data-link");
     window.open(link, "_blank");
 }
 
-// Start typing effect and update cards on load
+// Update cards on load
 window.onload = function () {
-    typePlaceholder();
     updateCards();
 };
