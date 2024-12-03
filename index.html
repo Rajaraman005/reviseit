@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reviseit</title>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="shortcut icon" href="./src/logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="https://github.com/Gustavo-Victor/theme-switcher/blob/main/assets/favicon/favicon-16x16.png" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/bd3ea3309c.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    <header class="header">
+     <a href="#" class="logo">Reviseit</a>
+     <input type="checkbox" name="" id="check">
+     <label for="check" class="icons">
+        <i class='bx bx-menu-alt-left' id="menu-icon"></i>
+        <i class='bx bx-x' id="close-icon"></i>
+     </label>
+     <nav class="navbar">
+         <a href="#">Home</a>
+         <a href="#">Classes</a>
+
+         <a href="#">Quiz</a>
+         <a href="#">Club</a>
+         <a href="#">Mentorship</a>
+    </nav>   
+    </header>
+   
+    <div class="search">
+        <img src="./src/search.jpg" alt="Search Background">
+        <div class="overlay">
+            <p>Hello <span id="stu">Student</span>, What Topic do you want to Revise?</p>
+            <div class="search-box">
+                <div class="row">
+                    <input type="text" name="searchbar" id="search-box" placeholder="Search Topics" autocomplete="off">
+                    <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+                <div class="result-box">
+                </div>
+            </div>
+            
+           
+            </div>
+        </div>
+    </div>
+    <div class="card-container" id="card-container">
+        <div class="card">
+            <div class="card-content">
+                <img id="img1" src="" alt="Book Image">
+                <h3>
+                    <span id="title1" class="book-title">Book Title 1</span>
+                </h3>
+                <p>
+                    <span id="desc1" class="book-desc">Short description of the content goes here.</span>
+                </p>
+                <button onclick="goToBookPage(1)">Read More</button>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-content">
+                <img id="img2" src="" alt="Book Image">
+                <h3>
+                    <span id="title2" class="book-title">Book Title 2</span>
+                </h3>
+                <p>
+                    <span id="desc2" class="book-desc">Short description of the content goes here.</span>
+                </p>
+                <button onclick="goToBookPage(2)">Read More</button>
+            </div>
+        </div>
+    
+        <div class="card">
+            <div class="card-content">
+                <img id="img3" src="" alt="Book Image">
+                <h3>
+                    <span id="title3" class="book-title">Book Title 3</span>
+                </h3>
+                <p>
+                    <span id="desc3" class="book-desc">Short description of the content goes here.</span>
+                </p>
+                <button onclick="goToBookPage(3)">Read More</button>
+            </div>
+        </div>
+       
+
+    <script src="script.js"></script>
+</body>
+</html>
