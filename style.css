@@ -7,6 +7,22 @@
   -webkit-focus-ring-color: transparent;
   outline: none;
 }
+@keyframes viewonscroll {
+  from {
+    opacity: 0;
+    scale: 0.5;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+.block {
+  animation: viewonscroll linear;
+  animation-timeline: view();
+  animation-range: entry 0;
+}
 
 ::-webkit-scrollbar {
   scrollbar-width: thin;
@@ -275,7 +291,7 @@ header::before {
   display: none;
   right: 5%;
 }
-#stu {
+.stu {
   color: rgb(10, 244, 10);
 }
 .card-container {
@@ -371,11 +387,11 @@ header::before {
     padding: 1.3rem 5%;
   }
   .search {
-    height: 65vh;
+    height: 80vh;
     padding-top: 10%;
   }
   .search img {
-    height: 60vh;
+    height: 80vh;
   }
   .icons #close-icon {
     display: none;
@@ -432,4 +448,86 @@ header::before {
     margin: 1.5rem 0;
     text-align: center;
   }
+}
+
+.timeline {
+  position: relative;
+  max-width: 1200px;
+  margin: 100px auto;
+}
+.container {
+  padding: 10px 50px;
+  position: relative;
+  width: 50%;
+}
+
+.text-box {
+  padding: 20px 30px;
+  background: #fff;
+  position: relative;
+  border-radius: 6px;
+  font-size: 15px;
+}
+
+.left-conatiner {
+  left: 0;
+}
+
+.right-conatiner {
+  left: 50%;
+}
+
+.container img {
+  position: absolute;
+  width: 40px;
+  border-radius: 50%;
+  right: -20px;
+  top: 32px;
+  z-index: 10;
+}
+
+.right-conatiner img {
+  left: -20px;
+}
+.timeline::after {
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 100%;
+  background: #000000;
+  top: 0;
+  left: 50%;
+  margin-top: -3px;
+  z-index: -1;
+}
+.text-box h2 {
+  font-weight: 600;
+}
+.text-box small {
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+.left-conatiner-arrow {
+  height: 0;
+  width: 0;
+  position: absolute;
+  top: 28px;
+  z-index: 1;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  border-left: 15px solid rgb(255, 255, 255);
+  right: -15px;
+}
+
+.right-conatiner-arrow {
+  height: 0;
+  width: 0;
+  position: absolute;
+  top: 28px;
+  z-index: 1;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  border-right: 15px solid rgb(255, 255, 255);
+  left: -15px;
 }
