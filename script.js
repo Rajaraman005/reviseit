@@ -224,3 +224,32 @@ window.onload = function () {
   updateCards();
   typePlaceholder();
 };
+
+
+//vison animation
+document.addEventListener("DOMContentLoaded", () => {
+  const timeline = document.querySelector(".timeline");
+  const containers = document.querySelectorAll(".container");
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          if (entry.target === timeline) {
+            timeline.classList.add("active"); // Activate the line
+          } else {
+            entry.target.classList.add("in-view"); // Activate containers
+          }
+        }
+      });
+    },
+    {
+      threshold: 0.1, // Trigger when 10% of the element is visible
+    }
+  );
+
+  // Observe the timeline and containers
+  observer.observe(timeline);
+  containers.forEach((container) => observer.observe(container));
+});
+ 

@@ -7,6 +7,10 @@
   -webkit-focus-ring-color: transparent;
   outline: none;
 }
+html {
+    scroll-behavior: smooth;
+}
+
 @keyframes viewonscroll {
   from {
     opacity: 0;
@@ -304,7 +308,7 @@ header::before {
 
 /* Card Styling */
 .card {
-  background: linear-gradient(135deg, #ffffff, #ffffff); /* Subtle gradient */
+  background: linear-gradient(135deg, #ffffff, #ffffff); 
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   width: calc(33.33% - 20px);
@@ -456,14 +460,49 @@ header::before {
   margin: 100px auto;
 }
 .container {
-  padding: 10px 50px;
-  position: relative;
-  width: 50%;
+    padding: 10px 50px;
+    position: relative;
+    width: 50%;
+    opacity: 0; 
+    transform: translateY(30px); 
+    transition: opacity 1s, transform 1s; 
+    border-radius: 13px;
+    
+}
+
+.container.in-view {
+    opacity: 1;
+    transform: translateY(0); 
+}
+
+@keyframes movedown {
+  0% {
+    opacity: 1;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+.container:nth-child(1) {
+  animation-delay: 0s;
+}
+.container:nth-child(2) {
+  animation-delay: 1s;
+}
+.container:nth-child(3) {
+  animation-delay: 2s;
+}
+.container:nth-child(4) {
+  animation-delay: 3s;
 }
 
 .text-box {
   padding: 20px 30px;
-  background: #fff;
+  background: linear-gradient(135deg, #ffffff, #ffffff); 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border: 2px solid rgba(0, 0, 0, 0.1);
   position: relative;
   border-radius: 6px;
   font-size: 15px;
@@ -490,16 +529,22 @@ header::before {
   left: -20px;
 }
 .timeline::after {
-  content: "";
-  position: absolute;
-  width: 6px;
-  height: 100%;
-  background: #000000;
-  top: 0;
-  left: 50%;
-  margin-top: -3px;
-  z-index: -1;
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 0; 
+    background: #000000;
+    top: 0;
+    left: 50%;
+    margin-left: -3px;
+    z-index: -1;
+    transition: height 5s linear; 
 }
+
+.timeline.active::after {
+    height: 100%; 
+}
+
 .text-box h2 {
   font-weight: 600;
 }
@@ -530,4 +575,37 @@ header::before {
   border-bottom: 15px solid transparent;
   border-right: 15px solid rgb(255, 255, 255);
   left: -15px;
+}
+
+@media screen and (max-width: 600px) {
+  .timeline {
+    margin: 50px auto;
+  }
+  .timeline::after {
+    left: 33px;
+  }
+  .container {
+    width: 100%;
+    padding-left: 80px;
+    padding-right: 25px;
+  }
+  .text-box {
+    font-size: 13px;
+  }
+  .text-box small {
+    margin-bottom: 10px;
+  }
+  .right-conatiner {
+    left: 0;
+  }
+  .left-conatiner img,
+  .right-conatiner img {
+    left: 10px;
+  }
+  .left-conatiner-arrow,
+  .right-conatiner-arrow {
+    border-radius: 15px solid #fff;
+    border-left: 0;
+    left: 15px;
+  }
 }
