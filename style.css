@@ -10,6 +10,36 @@
 html {
     scroll-behavior: smooth;
 }
+  .alert-box {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      border: 2px solid #ccc;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      text-align: center;
+      z-index: 1000;
+      font-family: Arial, sans-serif;
+      border-radius: 10px;
+    }
+
+     .alert-box {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      border: 2px solid #ccc;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      text-align: center;
+      z-index: 1000;
+      font-family: Arial, sans-serif;
+      border-radius: 10px;
+      display: none; /* Initially hidden */
+    }
 
 @keyframes viewonscroll {
   from {
@@ -528,7 +558,7 @@ header::before {
   position: relative;
   border-radius: 6px;
   font-size: 15px;
-  line-height: 1.6;
+  
 }
 
 .left-conatiner {
@@ -538,8 +568,16 @@ header::before {
     font-size: 16px;
     color: #333;
     margin-bottom: 20px;
-      text-align: justify;
+    text-align: justify;      
+    text-justify: inter-word;
+    display: block;
+    padding: 0;
+    margin: 0;
+    word-spacing: 0;
+    line-height: 1.6;
+    
 }
+
 
 .right-conatiner {
   left: 50%;
@@ -614,8 +652,14 @@ header::before {
     margin: 50px auto;
   }
   .timeline::after {
-    left: 33px;
-  }
+  content: '';
+  width: 4px;
+  background-color: #000;
+  height: var(--line-height, 0);
+  transition: height 0.2s ease-in-out;
+  left: 33px;
+}
+
   .container {
     width: 100%;
     padding-left: 80px;
@@ -627,6 +671,7 @@ header::before {
   .text-box small {
     margin-bottom: 10px;
   }
+  
   .right-conatiner {
     left: 0;
   }
@@ -640,4 +685,20 @@ header::before {
     border-left: 0;
     left: 15px;
   }
+   
+  
+  .text-box p.mobile-text {
+    display: block; /* Show shortened text in mobile view */
+  }
+  .read-more {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .read-more:hover {
+    text-decoration: underline;
+  }
+  
 }

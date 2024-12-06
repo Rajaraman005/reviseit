@@ -273,3 +273,76 @@ document.addEventListener("scroll", function () {
   const timelineLine = timeline.querySelector("::after");
   timeline.style.setProperty("--line-height", `${scrollPercentage * 100}%`);
 });
+
+
+
+// Function to truncate text for mobile view
+function applyMobileTruncate(selector, maxLength) {
+  const elements = document.querySelectorAll(selector);
+
+  // Loop through each element
+  elements.forEach((element) => {
+    const fullText = element.textContent.trim(); // Get the full text
+
+    // Store the full text in a custom data attribute (to use later)
+    if (!element.hasAttribute('data-full-text')) {
+      element.setAttribute('data-full-text', fullText);
+    }
+
+    // Reset content to full text initially
+    const storedFullText = element.getAttribute('data-full-text');
+    let truncatedText = storedFullText;
+
+    // Apply truncation if the screen width is below the mobile threshold
+    if (window.innerWidth <= 768) {
+      // Check if text length exceeds the limit
+      if (storedFullText.length > maxLength) {
+        truncatedText = storedFullText.substring(0, maxLength) + '...';
+      }
+
+      // Create or update the truncated content
+      element.innerHTML = ''; // Clear original content
+      const truncatedSpan = document.createElement('span');
+      truncatedSpan.textContent = truncatedText;
+
+      // Create a "Read More" link
+      const readMoreLink = document.createElement('a');
+      readMoreLink.href = '#';
+      readMoreLink.textContent = ' Read More';
+      readMoreLink.style.color = '#007bff'; // Optional styling
+      readMoreLink.style.textDecoration = 'none'; // Optional styling
+
+      // Append the truncated content and Read More link
+      element.appendChild(truncatedSpan);
+      element.appendChild(readMoreLink);
+
+      // Add click event to toggle between truncated and full text
+      readMoreLink.addEventListener('click', (event) => {
+        event.preventDefault(); // Prevent default link behavior
+        if (readMoreLink.textContent.trim() === 'Read More') {
+          truncatedSpan.textContent = storedFullText; // Show the full content
+          readMoreLink.textContent = ' Read Less'; // Change link text
+        } else {
+          truncatedSpan.textContent = truncatedText; // Show the truncated text
+          readMoreLink.textContent = ' Read More'; // Change link text
+        }
+      });
+    } else {
+      // If it's not a mobile view, show the full content without truncation
+      element.innerHTML = ''; // Clear any previous truncated content
+      const fullTextSpan = document.createElement('span');
+      fullTextSpan.textContent = storedFullText;
+      element.appendChild(fullTextSpan); // Append the full content
+    }
+  });
+}
+
+// Call the function on page load and on resize
+document.addEventListener('DOMContentLoaded', () => {
+  applyMobileTruncate('.text-box p', 100); // Adjust maxLength as needed
+});
+
+window.addEventListener('resize', () => {
+  applyMobileTruncate('.text-box p', 100); // Adjust maxLength as needed
+});
+
