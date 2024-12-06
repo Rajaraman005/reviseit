@@ -10,7 +10,7 @@
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
-    />
+    /> 
     <link rel="shortcut icon" href="./src/logo.png" type="image/x-icon" />
     <link
       rel="shortcut icon"
@@ -24,19 +24,163 @@
   </head>
   <body>
     <header class="header">
-      <a href="#" class="logo">Reviseit</a>
-      <input type="checkbox" name="" id="check" />
-      <label for="check" class="icons">
-        <i class="bx bx-menu-alt-left" id="menu-icon"></i>
-        <i class="bx bx-x" id="close-icon"></i>
-      </label>
-      <nav class="navbar">
-        <a href="index.html">Home</a>
-        <a href="#">Classes</a>
-        <a href="#">Quiz</a>
-        <a href="#">Club</a>
-        <a href="#">Mentorship</a>
-      </nav>
+        <!-- Logo with animation -->
+        <a href="#" class="logo">
+            <span class="revise">Revise</span><span class="it">It</span>
+        </a>        
+        <input type="checkbox" id="check" />
+        <label for="check" class="icons">
+            <i class="bx bx-menu-alt-left" id="menu-icon"></i>
+            <i class="bx bx-x" id="close-icon"></i>
+        </label>
+        <nav class="navbar">
+            <a href="index.html">Home</a>
+            <a href="#">Classes</a>
+            <a href="#">Quiz</a>
+            <a href="#">Club</a>
+            <a href="#">Mentorship</a>
+        </nav>
     </header>
+    <main>
+        <section>
+            <div class="form-container">
+                <h2>Search Recorded Sessions</h2>
+    
+                <!-- Department Dropdown -->
+                <label for="department">Department:</label>
+                <select id="department" name="department">
+                    <option value="" disabled selected>Select Department</option>
+                    <option value="science">Science</option>
+                    <option value="commerce">Commerce</option>
+                    <option value="arts">Arts</option>
+                </select>
+    
+                <!-- Year Dropdown -->
+                <label for="year">Year:</label>
+                <select id="year" name="year" disabled>
+                    <option value="" disabled selected>Select Year</option>
+                    <option value="1st">1st Year</option>
+                    <option value="2nd">2nd Year</option>
+                    <option value="3rd">3rd Year</option>
+                </select>
+    
+                <!-- Semester Dropdown -->
+                <label for="semester">Semester:</label>
+                <select id="semester" name="semester" disabled>
+                    <option value="" disabled selected>Select Semester</option>
+                    <option value="1st">1st Semester</option>
+                    <option value="2nd">2nd Semester</option>
+                </select>
+    
+                <!-- Subject Dropdown -->
+                <label for="subject">Subject:</label>
+                <select id="subject" name="subject" disabled>
+                    <option value="" disabled selected>Select Subject</option>
+                </select>
+    
+            </div>
+    
+            <!-- Recorded Sessions List -->
+            <div id="results">
+                <!-- Results will be displayed here -->
+            </div>
+        </section>
+    </main>
+ <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Enable Year, Semester, and Subject dropdown based on the Department selection
+        document.getElementById('department').addEventListener('change', function() {
+            const department = this.value;
+    
+            // Enable Year and Semester
+            document.getElementById('year').disabled = false;
+            document.getElementById('semester').disabled = false;
+    
+            // Populate Subject dropdown based on selected department
+            populateSubjects(department);
+        });
+    
+        // When Year is selected, populate Semester and Subject dropdown
+        document.getElementById('year').addEventListener('change', function() {
+            const department = document.getElementById('department').value;
+            const year = this.value;
+    
+            // Enable Semester and Subject based on selected year
+            populateSubjects(department, year);
+        });
+    
+        // Handle Semester selection
+        document.getElementById('semester').addEventListener('change', function() {
+            const department = document.getElementById('department').value;
+            const year = document.getElementById('year').value;
+            const semester = this.value;
+    
+            // Trigger session search based on selected options
+            searchSessions(department, year, semester);
+        });
+    
+        // Handle Subject selection
+        document.getElementById('subject').addEventListener('change', function() {
+            const department = document.getElementById('department').value;
+            const year = document.getElementById('year').value;
+            const semester = document.getElementById('semester').value;
+            const subject = this.value;
+    
+            // Trigger session search based on selected options
+            searchSessions(department, year, semester, subject);
+        });
+    
+        // Function to populate Subjects based on Department and Year
+        function populateSubjects(department, year = '') {
+            const subjectDropdown = document.getElementById('subject');
+            subjectDropdown.innerHTML = '<option value="" disabled selected>Select Subject</option>'; // Reset options
+    
+            // Enable Subject dropdown
+            subjectDropdown.disabled = false;
+    
+            // Example subjects based on department (Modify with actual subjects)
+            const subjects = {
+                science: ['Physics', 'Chemistry', 'Biology'],
+                commerce: ['Accountancy', 'Economics', 'Business Studies'],
+                arts: ['History', 'English', 'Political Science','B.com']
+            };
+    
+            const yearSubjects = subjects[department] || [];
+            yearSubjects.forEach(function(subject) {
+                const option = document.createElement('option');
+                option.value = subject;
+                option.textContent = subject;
+                subjectDropdown.appendChild(option);
+            });
+        }
+    
+        // Function to simulate search (For demo purposes)
+        function searchSessions(department, year, semester, subject = '') {
+            // You can replace this with an actual backend request to fetch session data
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = ''; // Clear previous results
+    
+            if (department && year && semester && subject) {
+                // Simulate sessions found based on selection
+                const sessions = [
+                    { title: 'Physics Lecture 1', description: 'Introduction to Physics', link: '#', department, year, semester, subject },
+                    { title: 'Chemistry Lecture 2', description: 'Organic Chemistry Basics', link: '#', department, year, semester, subject }
+                ];
+    
+                sessions.forEach(function(session) {
+                    const sessionElement = document.createElement('div');
+                    sessionElement.innerHTML = `
+                        <h3>${session.title}</h3>
+                        <p>${session.description}</p>
+                        <a href="${session.link}">Watch Now</a>
+                    `;
+                    resultsDiv.appendChild(sessionElement);
+                });
+            } else {
+                resultsDiv.innerHTML = '<p>No sessions available. Please select all fields.</p>';
+            }
+        }
+    });
+</script>    
   </body>
 </html>
