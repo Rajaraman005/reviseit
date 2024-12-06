@@ -252,4 +252,24 @@ document.addEventListener("DOMContentLoaded", () => {
   observer.observe(timeline);
   containers.forEach((container) => observer.observe(container));
 });
- 
+
+
+
+document.addEventListener("scroll", function () {
+  const timeline = document.querySelector(".timeline");
+  const timelineRect = timeline.getBoundingClientRect();
+  const viewportHeight = window.innerHeight;
+
+  // Calculate how much of the timeline is visible in the viewport
+  const scrollPosition = Math.min(
+    Math.max(viewportHeight - timelineRect.top, 0),
+    timelineRect.height
+  );
+
+  // Calculate percentage of the timeline in view
+  const scrollPercentage = scrollPosition / timelineRect.height;
+
+  // Set the height of the timeline line
+  const timelineLine = timeline.querySelector("::after");
+  timeline.style.setProperty("--line-height", `${scrollPercentage * 100}%`);
+});
