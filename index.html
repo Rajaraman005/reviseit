@@ -5,27 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reviseit</title>
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="shortcut icon" href="./src/logo.png" type="image/x-icon">
+    <link rel="shortcut icon" href="./src/logo.jpg" type="image/x-icon">
     <link rel="shortcut icon" href="https://github.com/Gustavo-Victor/theme-switcher/blob/main/assets/favicon/favicon-16x16.png" type="image/x-icon">
     <script src="https://kit.fontawesome.com/bd3ea3309c.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="style.css">
     
 </head>
 <body>
-    <header class="header">
-     <a href="#" class="logo">Reviseit</a>
-     <input type="checkbox" name="" id="check">
-     <label for="check" class="icons">
-        <i class='bx bx-menu-alt-left' id="menu-icon"></i>
-        <i class='bx bx-x' id="close-icon"></i>
-     </label>
-     <nav class="navbar">
-         <a href="#">Home</a>
-         <a href="class.html">Classes</a>
-         <a href="#">Quiz</a>
-         <a href="#">Club</a>
-         <a href="#">Mentorship</a>
-    </nav>   
+    <div id="header"></div>   
     </header>
      <!-- <button id="theme-switcher">
         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q14 0 27.5 1t26.5 3q-41 29-65.5 75.5T444-660q0 90 63 153t153 63q55 0 101-24.5t75-65.5q2 13 3 26.5t1 27.5q0 150-105 255T480-120Z"/></svg>
@@ -251,7 +238,7 @@
     </section>
     <footer class="footer" role="contentinfo" itemscope itemtype="http://schema.org/WPFooter">
     <div class="footer-left" itemscope itemtype="http://schema.org/Organization" class="h-card">
-        <img src="./src/logo.png" alt="Logo" itemprop="logo" class="u-logo logo" />
+        <img src="./src/logo.jpg" alt="Logo" itemprop="logo" class="u-logo logo" />
         <h3 itemprop="name" class="p-name">Reviseit</h3>
         <nav aria-label="Footer Navigation">
             <p class="footer-links" >
@@ -296,5 +283,18 @@ ReviseIt offers recorded college lectures to help students revisit classes anyti
 
 
     <script src="script.js"></script>
+     <script>
+    // Function to load the navbar into the page
+    function loadNavbar() {
+      fetch('navbar.html')
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('header').innerHTML = data;
+        });
+    }
+
+    // Load the navbar when the page loads
+    window.onload = loadNavbar;
+  </script>
 </body>
 </html>
