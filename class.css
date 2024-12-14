@@ -114,6 +114,7 @@ select, input {
     background-color: transparent; 
     justify-content: center;
     padding-left: 22px;
+    cursor: pointer;
    
 }
 

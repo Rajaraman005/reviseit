@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const semesterDropdown = document.getElementById("semester");
   const subjectDropdown = document.getElementById("subject");
   const topicsContainer = document.getElementById("topics-container");
+  const videoTopicHeader = document.querySelector("h1");
 
   let collegeData = {};
 
@@ -133,8 +134,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
           subheadings.forEach((subheading) => {
             const subheadingItem = document.createElement("p");
-            subheadingItem.textContent = subheading.trim();
+            subheadingItem.textContent = subheading.title || subheading;
             subheadingItem.classList.add("subheading-item");
+
+            // Make the subheading clickable by adding an event listener
+            subheadingItem.addEventListener("click", function () {
+              if (subheading.videoLink) {
+                window.location.href = `video.html?videoUrl=${encodeURIComponent(
+                  subheading.videoLink
+                )}`;
+                videoTopicHeader.textContent = `Video: ${
+                  subheading.title || subheading
+                }`; // Update the h1 with the subheading title
+              } else {
+                alert("No video link available for this subheading.");
+              }
+            });
+
             subtopicsContainer.appendChild(subheadingItem);
           });
 
@@ -142,7 +158,6 @@ document.addEventListener("DOMContentLoaded", function () {
           const subtopicLine = document.createElement("div");
           subtopicLine.classList.add("subtopic-line");
           topicItem.appendChild(subtopicLine);
-
         } else {
           subtopicsContainer.innerHTML = "<p>No subheadings available</p>";
         }
