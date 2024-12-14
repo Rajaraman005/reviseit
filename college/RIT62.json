@@ -1,0 +1,295 @@
+{
+  "b.sc.cs": {
+    "years": 3,
+    "semesters": {
+      "1": {
+        "subjects": {
+          "Maths": [
+            {
+              "topic": "Calculus",
+              "subheading": "Limits, Derivatives, Integrals"
+            },
+            {
+              "topic": "Linear Algebra",
+              "subheading": "Matrices, Vectors, Eigenvalues"
+            },
+            {
+              "topic": "Probability Theory",
+              "subheading": "Random Variables, Probability Distributions"
+            },
+            {
+              "topic": "Set Theory",
+              "subheading": "Union, Intersection, Venn Diagrams"
+            },
+            {
+              "topic": "Graph Theory",
+              "subheading": "Graphs, Trees, Connectivity"
+            }
+          ],
+          "Programming": [
+            {
+              "topic": "C Programming",
+              "subheading": "Syntax, Functions, Arrays"
+            },
+            {
+              "topic": "Java Programming",
+              "subheading": "OOP Concepts, Arrays, Exception Handling"
+            },
+            {
+              "topic": "Python Programming",
+              "subheading": "Data Types, Control Structures, Functions"
+            },
+            {
+              "topic": "Data Structures",
+              "subheading": "Arrays, Linked Lists, Stacks, Queues"
+            },
+            {
+              "topic": "Algorithms",
+              "subheading": "Sorting, Searching, Recursion"
+            }
+          ]
+        }
+      },
+      "2": {
+        "subjects": {
+          "Maths": [
+            {
+              "topic": "Differential Equations",
+              "subheading": "Ordinary Differential Equations, Solutions"
+            },
+            {
+              "topic": "Abstract Algebra",
+              "subheading": "Groups, Rings, Fields"
+            },
+            {
+              "topic": "Number Theory",
+              "subheading": "Prime Numbers, Divisibility, Modular Arithmetic"
+            },
+            {
+              "topic": "Linear Algebra",
+              "subheading": "Matrix Operations, Eigenvalues, Eigenvectors"
+            },
+            {
+              "topic": "Topology",
+              "subheading": "Open Sets, Continuity, Compactness"
+            }
+          ],
+          "Programming": [
+            {
+              "topic": "OOP",
+              "subheading": "Classes, Objects, Inheritance"
+            },
+            {
+              "topic": "Data Structures",
+              "subheading": "Trees, Graphs, Hashing"
+            },
+            {
+              "topic": "Algorithms",
+              "subheading": "Divide and Conquer, Greedy, Dynamic Programming"
+            },
+            {
+              "topic": "JavaScript",
+              "subheading": "DOM Manipulation, Asynchronous Programming"
+            },
+            {
+              "topic": "Python",
+              "subheading": "Libraries, File Handling, Modules"
+            }
+          ]
+        }
+      },
+      "3": {
+        "subjects": {
+          "Web Development": [
+            {
+              "topic": "HTML Basics",
+              "subheading": "Elements, Attributes, Structure"
+            },
+            {
+              "topic": "CSS Fundamentals",
+              "subheading": "Selectors, Box Model, Flexbox"
+            },
+            {
+              "topic": "JavaScript Essentials",
+              "subheading": "Variables, Functions, Loops"
+            },
+            {
+              "topic": "DOM Manipulation",
+              "subheading": "Selecting Elements, Event Handling"
+            },
+            {
+              "topic": "Responsive Design",
+              "subheading": "Media Queries, Mobile-first Design"
+            }
+          ],
+          "DBMS": [
+            {
+              "topic": "SQL",
+              "subheading": "Queries, Joins, Subqueries"
+            },
+            {
+              "topic": "Normalization",
+              "subheading": "1NF, 2NF, 3NF, BCNF"
+            },
+            {
+              "topic": "ER Models",
+              "subheading": "Entities, Relationships, Cardinality"
+            },
+            {
+              "topic": "Transactions",
+              "subheading": "ACID Properties, Commit, Rollback"
+            },
+            {
+              "topic": "Indexing",
+              "subheading": "B-trees, Hash Indexing"
+            }
+          ]
+        }
+      },
+      "4": {
+        "subjects": {
+          "Networking": [
+            {
+              "topic": "OSI Model",
+              "subheading": "Layers, Functions of Each Layer"
+            },
+            {
+              "topic": "TCP/IP",
+              "subheading": "Protocols, IP Addressing"
+            },
+            {
+              "topic": "DNS",
+              "subheading": "Domain Name Resolution, Records"
+            },
+            {
+              "topic": "Routing",
+              "subheading": "Routing Tables, Algorithms"
+            },
+            {
+              "topic": "Network Security",
+              "subheading": "Firewalls, VPNs, Encryption"
+            }
+          ],
+          "Cloud Computing": [
+            {
+              "topic": "AWS",
+              "subheading": "EC2, S3, Lambda"
+            },
+            {
+              "topic": "Microsoft Azure",
+              "subheading": "Virtual Machines, Azure Functions"
+            },
+            {
+              "topic": "Cloud Security",
+              "subheading": "Data Protection, Authentication"
+            },
+            {
+              "topic": "Virtualization",
+              "subheading": "VMware, Hypervisors"
+            },
+            {
+              "topic": "Load Balancing",
+              "subheading": "Round-robin, Failover, High Availability"
+            }
+          ]
+        }
+      },
+      "5": {
+        "subjects": {
+          "AI": [
+            {
+              "topic": "Machine Learning",
+              "subheading": "Supervised Learning, Unsupervised Learning"
+            },
+            {
+              "topic": "Neural Networks",
+              "subheading": "Perceptron, Backpropagation"
+            },
+            {
+              "topic": "Search Algorithms",
+              "subheading": "A*, Breadth-First Search"
+            },
+            {
+              "topic": "Natural Language Processing",
+              "subheading": "Tokenization, Named Entity Recognition"
+            },
+            {
+              "topic": "AI Ethics",
+              "subheading": "Bias, Fairness, Accountability"
+            }
+          ],
+          "Software Engineering": [
+            {
+              "topic": "SDLC",
+              "subheading": "Waterfall, Agile, Iterative"
+            },
+            {
+              "topic": "Requirement Analysis",
+              "subheading": "Gathering, Documentation, Validation"
+            },
+            {
+              "topic": "System Design",
+              "subheading": "Architectural Design, UML"
+            },
+            {
+              "topic": "Testing Strategies",
+              "subheading": "Unit Testing, Integration Testing"
+            },
+            {
+              "topic": "Agile",
+              "subheading": "Scrum, Kanban, Continuous Improvement"
+            }
+          ]
+        }
+      },
+      "6": {
+        "subjects": {
+          "DBMS": [
+            {
+              "topic": "Stored Procedures",
+              "subheading": "Creation, Execution, Parameters"
+            },
+            {
+              "topic": "Triggers",
+              "subheading": "BEFORE, AFTER, INSERT, UPDATE"
+            },
+            {
+              "topic": "Database Security",
+              "subheading": "Access Control, Encryption"
+            },
+            {
+              "topic": "Transactions",
+              "subheading": "Transaction Control, Isolation Levels"
+            },
+            {
+              "topic": "Indexing",
+              "subheading": "Clustered, Non-clustered Indexes"
+            }
+          ],
+          "Networking": [
+            {
+              "topic": "IP Addressing",
+              "subheading": "IPv4, IPv6, Subnetting"
+            },
+            {
+              "topic": "Routing Basics",
+              "subheading": "Routing Tables, Static Routing"
+            },
+            {
+              "topic": "Firewall Setup",
+              "subheading": "Packet Filtering, Stateful Inspection"
+            },
+            {
+              "topic": "Wireless Networking",
+              "subheading": "Wi-Fi, Bluetooth, Zigbee"
+            },
+            {
+              "topic": "Network Monitoring",
+              "subheading": "Packet Sniffers, Bandwidth Analysis"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

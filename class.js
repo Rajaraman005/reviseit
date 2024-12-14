@@ -1,124 +1,212 @@
-document.addEventListener('DOMContentLoaded', function () {
-      const departmentDropdown = document.getElementById('department');
-      const yearDropdown = document.getElementById('year');
-      const semesterDropdown = document.getElementById('semester');
-      const subjectDropdown = document.getElementById('subject');
-      const topicsContainer = document.getElementById('topics-container');
+document.addEventListener("DOMContentLoaded", function () {
+  const collegeInput = document.getElementById("college");
+  const departmentDropdown = document.getElementById("department");
+  const yearDropdown = document.getElementById("year");
+  const semesterDropdown = document.getElementById("semester");
+  const subjectDropdown = document.getElementById("subject");
+  const topicsContainer = document.getElementById("topics-container");
 
-      // Define year and semester mappings for departments
-      const departmentMappings = {
-        bsc_cs: { years: 3, semesters: 6 },
-        bca: { years: 3, semesters: 6 },
-        engineering: { years: 4, semesters: 8 },
-        bcom: { years: 3, semesters: 6 },
-        ba: { years: 3, semesters: 6 },
-        mba: { years: 2, semesters: 4 },
-        mca: { years: 2, semesters: 4 },
-      };
+  let collegeData = {};
 
-      // Define subjects and their topics for each department
-      const departmentSubjects = {
-        bsc_cs: {
-          'Maths': ['Calculus', 'Linear Algebra', 'Probability Theory'],
-          'Programming': ['C Programming', 'Java Programming', 'Data Structures'],
-          'Data Structures': ['Arrays', 'Linked Lists', 'Stacks', 'Queues'],
-        },
-        bca: {
-          'Web Development': ['HTML', 'CSS', 'JavaScript', 'React'],
-          'DBMS': ['SQL', 'Normalization', 'ER Modeling'],
-          'Networking': ['OSI Model', 'TCP/IP', 'IP Addressing'],
-        },
-        engineering: {
-          'Thermodynamics': ['Laws of Thermodynamics', 'Heat Transfer'],
-          'Circuits': ['AC Circuits', 'DC Circuits', 'Power Systems'],
-          'Mechanics': ['Statics', 'Dynamics', 'Fluid Mechanics'],
-        },
-      };
+  departmentDropdown.disabled = true;
+  yearDropdown.disabled = true;
+  semesterDropdown.disabled = true;
+  subjectDropdown.disabled = true;
 
-      // Handle department selection
-      departmentDropdown.addEventListener('change', function () {
-        const selectedDepartment = this.value;
-        const mapping = departmentMappings[selectedDepartment];
+  collegeInput.addEventListener("change", function () {
+    const collegeCode = this.value.trim().toLowerCase();
 
-        if (mapping) {
-          populateYearDropdown(mapping.years);
-          yearDropdown.disabled = false;
-          semesterDropdown.disabled = true;
-          subjectDropdown.disabled = true;
-          topicsContainer.innerHTML = ''; // Clear topics when changing department
-        }
+    if (!collegeCode) {
+      alert("Please enter a valid college code.");
+      return;
+    }
+
+    fetch(`./college/${collegeCode}.json`)
+      .then((response) => response.json())
+      .then((data) => {
+        collegeData = data;
+        populateDepartments(Object.keys(data));
+        departmentDropdown.disabled = false;
+      })
+      .catch((error) => {
+        console.error("Error loading college data:", error);
+        alert("Invalid college code or file not found.");
       });
+  });
 
-      // Handle year selection
-      yearDropdown.addEventListener('change', function () {
-        const selectedDepartment = departmentDropdown.value;
-        const mapping = departmentMappings[selectedDepartment];
-
-        if (mapping) {
-          populateSemesterDropdown(mapping.semesters);
-          semesterDropdown.disabled = false;
-        }
-      });
-
-      // Handle semester selection
-      semesterDropdown.addEventListener('change', function () {
-        const selectedDepartment = departmentDropdown.value;
-        populateSubjects(selectedDepartment);
-        subjectDropdown.disabled = false;
-      });
-
-      // Populate year dropdown
-      function populateYearDropdown(totalYears) {
-        yearDropdown.innerHTML = '<option value="" disabled selected>Select Year</option>';
-        for (let year = 1; year <= totalYears; year++) {
-          const option = document.createElement('option');
-          option.value = `${year}st`;
-          option.textContent = `${year} Year`;
-          yearDropdown.appendChild(option);
-        }
-      }
-
-      // Populate semester dropdown
-      function populateSemesterDropdown(totalSemesters) {
-        semesterDropdown.innerHTML = '<option value="" disabled selected>Select Semester</option>';
-        for (let semester = 1; semester <= totalSemesters; semester++) {
-          const option = document.createElement('option');
-          option.value = `${semester}st`;
-          option.textContent = `${semester} Semester`;
-          semesterDropdown.appendChild(option);
-        }
-      }
-
-      // Populate subject dropdown based on department
-      function populateSubjects(department) {
-        subjectDropdown.innerHTML = '<option value="" disabled selected>Select Subject</option>';
-        const subjects = departmentSubjects[department];
-
-        for (let subject in subjects) {
-          const option = document.createElement('option');
-          option.value = subject;
-          option.textContent = subject;
-          subjectDropdown.appendChild(option);
-        }
-      }
-
-      // Display topics when a subject is selected
-      subjectDropdown.addEventListener('change', function () {
-        const selectedDepartment = departmentDropdown.value;
-        const selectedSubject = this.value;
-        const topics = departmentSubjects[selectedDepartment][selectedSubject];
-
-        topicsContainer.innerHTML = '<h3>Topics:</h3>';
-        const topicsList = document.createElement('div');
-        topicsList.classList.add('topics');
-
-        topics.forEach(function (topic) {
-          const topicItem = document.createElement('div');
-          topicItem.classList.add('topic-item');
-          topicItem.textContent = topic;
-          topicsList.appendChild(topicItem);
-        });
-
-        topicsContainer.appendChild(topicsList);
-      });
+  function populateDepartments(departments) {
+    departmentDropdown.innerHTML =
+      '<option value="" disabled selected>Select Department</option>';
+    departments.forEach((department) => {
+      const option = document.createElement("option");
+      option.value = department;
+      option.textContent = department.toUpperCase();
+      departmentDropdown.appendChild(option);
     });
+    yearDropdown.disabled = true;
+    semesterDropdown.disabled = true;
+    subjectDropdown.disabled = true;
+    topicsContainer.innerHTML = "";
+  }
+
+  departmentDropdown.addEventListener("change", function () {
+    const selectedDepartment = this.value;
+
+    if (collegeData[selectedDepartment]) {
+      const { years } = collegeData[selectedDepartment];
+      populateYearDropdown(years);
+      yearDropdown.disabled = false;
+      semesterDropdown.disabled = true;
+      subjectDropdown.disabled = true;
+      topicsContainer.innerHTML = "";
+    }
+  });
+
+  yearDropdown.addEventListener("change", function () {
+    const selectedYear = parseInt(this.value);
+    const selectedDepartment = departmentDropdown.value;
+
+    if (collegeData[selectedDepartment]) {
+      const { semesters } = collegeData[selectedDepartment];
+      populateSemesterDropdown(selectedYear, semesters);
+      semesterDropdown.disabled = false;
+      subjectDropdown.disabled = true;
+      topicsContainer.innerHTML = "";
+    }
+  });
+
+  semesterDropdown.addEventListener("change", function () {
+    const selectedDepartment = departmentDropdown.value;
+    const selectedSemester = parseInt(this.value);
+
+    if (collegeData[selectedDepartment]) {
+      const selectedSemesterData =
+        collegeData[selectedDepartment].semesters[selectedSemester];
+      const subjects = selectedSemesterData?.subjects;
+      if (subjects) {
+        populateSubjects(subjects);
+        subjectDropdown.disabled = false;
+      } else {
+        alert("Subjects data not found for this semester.");
+        subjectDropdown.disabled = true;
+        topicsContainer.innerHTML = "";
+      }
+    }
+  });
+
+  subjectDropdown.addEventListener("change", function () {
+    const selectedDepartment = departmentDropdown.value;
+    const selectedSemester = semesterDropdown.value;
+    const selectedSubject = this.value;
+
+    const subjects =
+      collegeData[selectedDepartment]?.semesters[selectedSemester]?.subjects;
+    const topics = subjects ? subjects[selectedSubject] : null;
+
+    topicsContainer.innerHTML = "<h3>Topics:</h3>";
+
+    if (topics && topics.length > 0) {
+      const topicsList = document.createElement("div");
+
+      topics.forEach((topic, index) => {
+        const topicItem = document.createElement("div");
+        topicItem.classList.add("topic-item");
+
+        const mainTopic = document.createElement("button");
+        mainTopic.textContent = topic.topic || "No Heading Available";
+        mainTopic.classList.add("main-topic");
+        mainTopic.setAttribute("data-index", index);
+
+        // Add the line connecting parent (topic) to children
+        const topicLine = document.createElement("div");
+        topicLine.classList.add("topic-line");
+        topicItem.appendChild(topicLine);
+
+        const subtopicsContainer = document.createElement("div");
+        subtopicsContainer.classList.add("subtopics-container");
+        subtopicsContainer.style.display = "none"; // Initially hidden
+
+        if (topic.subheading) {
+          const subheadings = Array.isArray(topic.subheading)
+            ? topic.subheading
+            : topic.subheading.split(","); // Convert string to array if needed
+
+          subheadings.forEach((subheading) => {
+            const subheadingItem = document.createElement("p");
+            subheadingItem.textContent = subheading.trim();
+            subheadingItem.classList.add("subheading-item");
+            subtopicsContainer.appendChild(subheadingItem);
+          });
+
+          // Add the line connecting the main topic to subtopics
+          const subtopicLine = document.createElement("div");
+          subtopicLine.classList.add("subtopic-line");
+          topicItem.appendChild(subtopicLine);
+
+        } else {
+          subtopicsContainer.innerHTML = "<p>No subheadings available</p>";
+        }
+
+        topicItem.appendChild(mainTopic);
+        topicItem.appendChild(subtopicsContainer);
+        topicsList.appendChild(topicItem);
+
+        mainTopic.addEventListener("click", function () {
+          const allSubtopics = document.querySelectorAll(
+            ".subtopics-container"
+          );
+          allSubtopics.forEach((container) => {
+            if (container !== subtopicsContainer) {
+              container.style.display = "none";
+            }
+          });
+          const isVisible =
+            subtopicsContainer.style.display === "block" ? true : false;
+          subtopicsContainer.style.display = isVisible ? "none" : "block";
+        });
+      });
+
+      topicsContainer.appendChild(topicsList);
+      topicsContainer.style.display = "block";
+    } else {
+      topicsContainer.innerHTML += "<p>No topics available.</p>";
+      topicsContainer.style.display = "none";
+    }
+  });
+
+  function populateYearDropdown(totalYears) {
+    yearDropdown.innerHTML =
+      '<option value="" disabled selected>Select Year</option>';
+    for (let year = 1; year <= totalYears; year++) {
+      const option = document.createElement("option");
+      option.value = year;
+      option.textContent = `${year} Year`;
+      yearDropdown.appendChild(option);
+    }
+  }
+
+  function populateSemesterDropdown(selectedYear, semesters) {
+    semesterDropdown.innerHTML =
+      '<option value="" disabled selected>Select Semester</option>';
+
+    const totalSemesters = Object.keys(semesters).slice(0, selectedYear * 2);
+
+    totalSemesters.forEach((semester) => {
+      const option = document.createElement("option");
+      option.value = semester;
+      option.textContent = `${semester} Semester`;
+      semesterDropdown.appendChild(option);
+    });
+  }
+
+  function populateSubjects(subjects) {
+    subjectDropdown.innerHTML =
+      '<option value="" disabled selected>Select Subject</option>';
+    for (let subject in subjects) {
+      const option = document.createElement("option");
+      option.value = subject;
+      option.textContent = subject;
+      subjectDropdown.appendChild(option);
+    }
+  }
+});

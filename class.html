@@ -1,71 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Reviseit</title>
-  <link rel="stylesheet" href="class.css">
-  <link rel="shortcut icon" href="./src/logo.jpg" type="image/x-icon">
-  <link rel="stylesheet" href="style.css">
-  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
- 
- 
-</head>
-<body>
-<div id="header"></div>
-  <div class="form-container">
-    <h2>Search Recorded Sessions</h2>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Reviseit</title>
+    <link rel="stylesheet" href="class.css" />
+    <link rel="shortcut icon" href="./src/logo.jpg" type="image/x-icon" />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="header"></div>
+    <div class="form-container">
+      <h2>Search Recorded Sessions</h2>
 
-    <!-- Department Dropdown -->
-    <label for="department">Department:</label>
-    <select id="department" name="department">
-      <option value="" disabled selected>Select Department</option>
-      <option value="bsc_cs">BSc CS</option>
-      <option value="bca">BCA</option>
-      <option value="engineering">Engineering</option>
-      <option value="bcom">BCom</option>
-      <option value="ba">BA</option>
-      <option value="mba">MBA</option>
-      <option value="mca">MCA</option>
-    </select>
+      <!-- College Input -->
+      <label for="college">Code:</label>
+      <input
+        type="text"
+        id="college"
+        name="college"
+        placeholder="Enter your college Code"
+      />
 
-    <!-- Year Dropdown -->
-    <label for="year">Year:</label>
-    <select id="year" name="year" disabled>
-      <option value="" disabled selected>Select Year</option>
-    </select>
+      <!-- Department Dropdown -->
+      <label for="department">Department:</label>
+      <select id="department" name="department">
+  <option value="" disabled selected>Select Department</option>
+</select>
 
-    <!-- Semester Dropdown -->
-    <label for="semester">Semester:</label>
-    <select id="semester" name="semester" disabled>
-      <option value="" disabled selected>Select Semester</option>
-    </select>
 
-    <!-- Subject Dropdown -->
-    <label for="subject">Subject:</label>
-    <select id="subject" name="subject" disabled>
-      <option value="" disabled selected>Select Subject</option>
-    </select>
+      <!-- Year Dropdown -->
+      <label for="year">Year:</label>
+      <select id="year" name="year" disabled>
+        <option value="" disabled selected>Select Year</option>
+      </select>
 
-    <!-- Topics List -->
-    <div id="topics-container">
-      <!-- Topics will be displayed here -->
+      <!-- Semester Dropdown -->
+      <label for="semester">Semester:</label>
+      <select id="semester" name="semester" disabled>
+        <option value="" disabled selected>Select Semester</option>
+      </select>
+
+      <!-- Subject Dropdown -->
+      <label for="subject">Subject:</label>
+      <select id="subject" name="subject" disabled>
+        <option value="" disabled selected>Select Subject</option>
+      </select>
+
+      <!-- Topics List -->
+      <div id="topics-container">
+        <!-- Topics will be displayed here -->
+      </div>
     </div>
-  </div>
 
-  <script src="class.js"></script>
-   <script>
-    // Function to load the navbar into the page
-    function loadNavbar() {
-      fetch('navbar.html')
-        .then(response => response.text())
-        .then(data => {
-          document.getElementById('header').innerHTML = data;
-        });
-    }
+    <script src="class.js"></script>
+    <script>
+      // Function to load the navbar into the page
+      function loadNavbar() {
+        fetch("navbar.html")
+          .then((response) => response.text())
+          .then((data) => {
+            document.getElementById("header").innerHTML = data;
+          });
+      }
 
-    // Load the navbar when the page loads
-    window.onload = loadNavbar;
-  </script>
-</body>
+      // Load the navbar when the page loads
+      window.onload = loadNavbar;
+    </script>
+  </body>
 </html>

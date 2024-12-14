@@ -16,7 +16,8 @@ body {
     width: 600px;
     max-width: 90%; /* Ensure it fits on smaller screens */
     box-sizing: border-box; /* Include padding and border in width */
-    text-align: left; /* Align form content to the left */
+    text-align: left;
+    margin-top: 10%;
 }
 
 label {
@@ -36,26 +37,96 @@ select, input {
     background-color: transparent;
 }
 
-.topics {
-      margin-top: 15px;
-      padding: 10px;
-      background-color: #f0f0f0;
-      border-radius: 8px;
-    }
-
-    .topic-item {
-      margin: 5px 0;
-    }
-    
-#results {
-    margin-top: 20px;
+#college::placeholder {
+    font-size: 0.8em;
 }
+
+#college {
+    border: 1px solid #000000;
+    padding: 8px;
+    border-radius: 8px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+}
+
+#topics-container {
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #ffffff;
+    height: 200px;
+    overflow-y: auto;
+    border: 1px solid #000000;
+    display: none;  /* Initially hide the topics container */
+}
+
+#topics-container h3 {
+    margin-bottom: 15px;  /* Adds space below the heading */
+    font-size: 1.5rem;  /* Makes the heading text slightly larger */
+    font-weight: bold;  /* Makes the heading bold */
+}
+
+#topics-container div {
+    margin-bottom: 10px;  /* Adds space between each topic item */
+    font-size: 1rem;  /* Sets the font size of the topic items */
+    color: #000000;  /* Sets the text color */
+    cursor: default; /* Removes pointer style to indicate no hover action */
+}
+
+/* Ensure text opacity remains consistent */
+#topics-container div {
+    opacity: 1; /* Set opacity to 1 to ensure full visibility */
+    color: #000000; /* Text color */
+}
+
+
+
+
+#topics-container div:last-child {
+    margin-bottom: 0;  /* Removes the margin for the last topic item */
+}
+
+.subheading-dropdown {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    text-align: center; /* Center the text inside the dropdown */
+    border: 1px solid #000000; /* Add a border */
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+
+.subheading-container { 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15px;
+    padding: 15px;
+    border: 2px solid #000000; /* Add border for the entire container */
+    border-radius: 8px; /* Rounded corners for the container */
+    background-color: #ffffff; /* Light background */
+}
+
+.subheading-item {
+    margin: 10px 0; /* Add space between subheadings */
+    padding: 5px 10px; /* Space inside the subheading item */
+    background-color: transparent; 
+    justify-content: center;
+    padding-left: 22px;
+   
+}
+
+
+
+
+
 
 /* Responsive Design */
 @media (max-width: 768px) {
     .form-container {
         width: 100%; 
-         margin-left: 20px;
+        margin-left: 20px;
     }
 }
 
