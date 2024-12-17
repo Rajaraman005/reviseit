@@ -1,100 +1,243 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Reviseit</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="style.css">
   <link rel="shortcut icon" href="./src/logo.jpg" type="image/x-icon">
-  <link
-      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-      rel="stylesheet"
-    />
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  <title>Reviseit</title>
+  
   <style>
-    /* Add responsive styling for the iframe */
-    #video-container {
-      max-width: 100%;
-      margin: 0 auto;
-      padding: 20px;
-      box-sizing: border-box;
-      margin-top: 5%;
-    }
+   /* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    #video-frame-container {
-      position: relative;
-      width: 100%;
-      padding-bottom: 56.25%; /* 16:9 aspect ratio */
-      height: 0;
-      overflow: hidden;
-      background: #000;
-    }
+body {
+  font-family: Arial, sans-serif;
+  background-color: #000;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
 
-    #video-frame {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
+/* Center the video container */
+#video-container {
+  position: relative;
+  width: 80%;
+  max-width: 960px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #000;
+}
 
-    h1 {
-      text-align: center;
-      font-size: 24px;
-      margin-bottom: 20px;
-    }
+/* Responsive YouTube Embed */
+.yt-frame-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+}
+
+.yt-frame-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 300%;
+  margin-left: -100%;
+  height: 100%;
+}
+
+/* Video controls */
+.video-controls {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  opacity: 0.8;
+  align-items: center; /* Ensures controls are vertically aligned */
+  width: 100%; /* Ensure controls span the full width */
+}
+
+/* Play/Pause, Mute/Unmute, Fullscreen buttons */
+.video-controls button {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 24px; /* Increase size of play button */
+  cursor: pointer;
+  padding: 5px 15px; /* Adjust padding for bigger button */
+}
+
+.video-controls button:hover {
+  color: #ff6600;
+}
+
+/* Slider Style */
+.video-slider {
+  flex-grow: 1; /* Take the remaining space */
+  margin: 0 10px; /* Add spacing around the slider */
+  position: relative;
+}
+
+.video-slider input {
+  width: 100%;
+  background: transparent;
+  cursor: pointer;
+}
+
+.video-slider input::-webkit-slider-runnable-track {
+  background: #777;
+  height: 5px;
+}
+
+.video-slider input::-webkit-slider-thumb {
+  background: #ff6600;
+  border-radius: 50%;
+  width: 16px; /* Increase size of the thumb */
+  height: 16px; /* Increase size of the thumb */
+  margin-top: -6px; /* Adjust thumb position */
+}
+
+
   </style>
 </head>
+
 <body>
-  <div id="header"></div>
+  <!-- Video Container -->
   <div id="video-container">
-    <h1 id="video-title">Video</h1>  <!-- Dynamically updated title -->
-    <div id="video-frame-container">
-      <iframe id="video-frame" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <div class="yt-frame-container">
+      <iframe id="video-frame" frameborder="0"
+        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </div>
+
+    <!-- Video Controls -->
+    <div class="video-controls">
+      <button id="play-pause-btn"><i class="bx bx-play"></i></button>
+      <div class="video-slider">
+        <input type="range" id="video-progress" min="0" value="0" max="100" step="1">
+      </div>
+      <button id="mute-btn"><i class="bx bx-volume-full"></i></button>
+      <button id="fullscreen-btn"><i class="bx bx-fullscreen"></i></button>
     </div>
   </div>
 
   <script>
-    window.addEventListener("load", function() {
+    window.addEventListener("load", function () {
       const urlParams = new URLSearchParams(window.location.search);
       const videoUrl = urlParams.get("videoUrl");
-      const videoTitle = urlParams.get("videoTitle");  // Get the video title from URL parameters
 
+      // Embed video with parameters
       if (videoUrl) {
         const videoFrame = document.getElementById("video-frame");
 
-        // Check if the URL is a valid YouTube URL
+        // Extract the YouTube video ID using regex
         const youtubeRegex = /(?:https?:\/\/(?:www\.)?youtube\.com\/(?:[^\/]+\/[^\/]+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=))([a-zA-Z0-9_-]{11})(?:[^\s]*)/;
         const match = videoUrl.match(youtubeRegex);
 
         if (match) {
-          // Extract the video ID and format the embed URL
           const videoId = match[1];
-          videoFrame.src = `https://www.youtube.com/embed/${videoId}`;
+
+          // Construct the YouTube embed URL with parameters
+videoFrame.src = `https://www.youtube.com/embed/${videoId}?autoplay=0&mute=0&loop=1&controls=0&color=white&modestbranding=1&rel=0&showinfo=0&playsinline=1&enablejsapi=1&playlist=${videoId}`;
         } else {
           alert("Invalid YouTube URL.");
         }
       } else {
         alert("No video URL found.");
       }
+      
+      const videoFrame = document.getElementById("video-frame");
+      const player = new YT.Player(videoFrame, {
+        events: {
+          'onReady': onPlayerReady,
+          'onStateChange': onPlayerStateChange
+        }
+      });
 
-      if (videoTitle) {
-        const videoTitleElement = document.getElementById("video-title");
-        videoTitleElement.textContent = videoTitle;  // Update the title dynamically
-      } else {
-        alert("No video title found.");
+      let isPlaying = false;
+      let isMuted = false;
+
+      // Play/Pause button
+      document.getElementById("play-pause-btn").addEventListener("click", function () {
+        if (isPlaying) {
+          player.pauseVideo();
+          document.getElementById("play-pause-btn").innerHTML = '<i class="bx bx-play"></i>';
+        } else {
+          player.playVideo();
+          document.getElementById("play-pause-btn").innerHTML = '<i class="bx bx-pause"></i>';
+        }
+        isPlaying = !isPlaying;
+      });
+
+      // Mute/Unmute button
+      document.getElementById("mute-btn").addEventListener("click", function () {
+        if (isMuted) {
+          player.unMute();
+          document.getElementById("mute-btn").innerHTML = '<i class="bx bx-volume-full"></i>';
+        } else {
+          player.mute();
+          document.getElementById("mute-btn").innerHTML = '<i class="bx bx-volume-mute"></i>';
+        }
+        isMuted = !isMuted;
+      });
+
+      // Fullscreen button
+     // Fullscreen button
+document.getElementById("fullscreen-btn").addEventListener("click", function () {
+  const iframe = document.getElementById("video-frame");
+  
+  if (iframe.requestFullscreen) {
+    iframe.requestFullscreen();
+  } else if (iframe.mozRequestFullScreen) { // Firefox
+    iframe.mozRequestFullScreen();
+  } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari and Opera
+    iframe.webkitRequestFullscreen();
+  } else if (iframe.msRequestFullscreen) { // IE/Edge
+    iframe.msRequestFullscreen();
+  }
+});
+
+
+      // Update video progress slider
+      setInterval(function () {
+        const progress = (player.getCurrentTime() / player.getDuration()) * 100;
+        document.getElementById("video-progress").value = progress;
+      }, 500);
+
+      // Seek video based on progress slider
+      document.getElementById("video-progress").addEventListener("input", function () {
+        const newTime = (player.getDuration() * this.value) / 100;
+        player.seekTo(newTime);
+      });
+
+      // Player ready callback
+      function onPlayerReady(event) {
+        // Video is ready to play
+      }
+
+      // Player state change callback
+      function onPlayerStateChange(event) {
+        if (event.data === YT.PlayerState.PLAYING) {
+          isPlaying = true;
+        } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
+          isPlaying = false;
+        }
       }
     });
-
-    function loadNavbar() {
-      fetch("navbar.html")
-        .then((response) => response.text())
-        .then((data) => {
-          document.getElementById("header").innerHTML = data;
-        });
-    }
-
-    // Load the navbar when the page loads
-    window.onload = loadNavbar;
   </script>
+  <script src="https://www.youtube.com/iframe_api"></script>
 </body>
+
 </html>

@@ -138,18 +138,24 @@ document.addEventListener("DOMContentLoaded", function () {
             subheadingItem.classList.add("subheading-item");
 
             // Make the subheading clickable by adding an event listener
-            subheadingItem.addEventListener("click", function () {
-              if (subheading.videoLink) {
-                window.location.href = `video.html?videoUrl=${encodeURIComponent(
-                  subheading.videoLink
-                )}`;
-                videoTopicHeader.textContent = `Video: ${
-                  subheading.title || subheading
-                }`; // Update the h1 with the subheading title
-              } else {
-                alert("No video link available for this subheading.");
-              }
-            });
+           subheadingItem.addEventListener("click", function () {
+             if (subheading.videoLink) {
+               const subheadingTitle = subheading.title || subheading;
+               const videoUrl = encodeURIComponent(subheading.videoLink);
+               const subheadingTitleEncoded =
+                 encodeURIComponent(subheadingTitle);
+
+               // Redirect to video page with videoUrl and subheading title as URL parameters
+               window.location.href = `video.html?videoUrl=${videoUrl}&subheadingTitle=${subheadingTitleEncoded}`;
+
+               videoTopicHeader.textContent = `Video: ${
+                 subheadingTitle || subheading
+               }`;
+             } else {
+               alert("No video link available for this subheading.");
+             }
+           });
+
 
             subtopicsContainer.appendChild(subheadingItem);
           });
