@@ -8,236 +8,211 @@
   <link rel="shortcut icon" href="./src/logo.jpg" type="image/x-icon">
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
   <title>Reviseit</title>
-  
+
   <style>
-   /* General Reset */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-body {
-  font-family: Arial, sans-serif;
-  background-color: #000;
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  overflow: hidden;
-}
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #000;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      padding: 10px; /* Add padding to avoid edge clipping */
+    }
 
-/* Center the video container */
-#video-container {
-  position: relative;
-  width: 80%;
-  max-width: 960px;
-  overflow: hidden;
-  border-radius: 10px;
-  background: #000;
-}
+    /* Video container */
+    #video-container {
+      position: relative;
+      width: 100%; /* Takes 90% of the viewport width */
+      max-width: 960px;
+      border-radius: 10px;
+      background: #000;
+      margin-top: 5%;
+    }
 
-/* Responsive YouTube Embed */
-.yt-frame-container {
-  position: relative;
-  padding-bottom: 56.25%;
-  height: 0;
-  overflow: hidden;
-}
+    /* Video element */
+    #s3-video {
+      width: 100%;
+      height: auto;
+      display: block;
+      background: #000;
+    }
 
-.yt-frame-container iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 300%;
-  margin-left: -100%;
-  height: 100%;
-}
+    /* Watermark styling */
+    #watermark {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      font-size: 24px;
+      color: rgba(255, 255, 255, 0.5); /* White with opacity */
+      font-weight: bold;
+      z-index: 1;
+      pointer-events: none; /* Prevent the watermark from interfering with video controls */
+    }
 
-/* Video controls */
-.video-controls {
-  position: absolute;
-  bottom: 10px;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: space-between;
-  padding: 10px;
-  opacity: 0.8;
-  align-items: center; /* Ensures controls are vertically aligned */
-  width: 100%; /* Ensure controls span the full width */
-}
+    /* Title styling */
+    #video-title {
+      font-size: 24px;
+      font-weight: bold;
+      color: #fff;
+      margin-bottom: 10px;
+      text-align: center;
+      padding: 10px 0; /* Add padding for spacing */
+    }
 
-/* Play/Pause, Mute/Unmute, Fullscreen buttons */
-.video-controls button {
-  background-color: transparent;
-  border: none;
-  color: white;
-  font-size: 24px; /* Increase size of play button */
-  cursor: pointer;
-  padding: 5px 15px; /* Adjust padding for bigger button */
-}
+    /* Notes container styling */
+    #notes-container {
+      width: 100%;
+      max-width: 960px;
+      margin-top: 20px; /* Space between video and notes */
+      padding: 10px;
+      background: #222;
+      border-radius: 10px;
+      color: #fff;
+      text-align: justify;
+      text-justify: inter-word;
+      display: block;
+    }
 
-.video-controls button:hover {
-  color: #ff6600;
-}
+    #notes-container h3 {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
 
-/* Slider Style */
-.video-slider {
-  flex-grow: 1; /* Take the remaining space */
-  margin: 0 10px; /* Add spacing around the slider */
-  position: relative;
-}
+    #notes-container p {
+      font-size: 16px;
+      line-height: 1.5;
+    }
 
-.video-slider input {
-  width: 100%;
-  background: transparent;
-  cursor: pointer;
-}
+    /* Media query for mobile screens */
+    @media screen and (max-width: 768px) {
+      body {
+        padding: 10px; /* Provide padding on smaller screens */
+      }
 
-.video-slider input::-webkit-slider-runnable-track {
-  background: #777;
-  height: 5px;
-}
+      #video-title {
+        font-size: 20px; /* Smaller font size for mobile */
+      }
 
-.video-slider input::-webkit-slider-thumb {
-  background: #ff6600;
-  border-radius: 50%;
-  width: 16px; /* Increase size of the thumb */
-  height: 16px; /* Increase size of the thumb */
-  margin-top: -6px; /* Adjust thumb position */
-}
+      #video-container {
+        width: 100%;
+        margin-top: 10%;
+      }
 
+      #s3-video {
+        height: auto; /* Make the video responsive */
+      }
 
+      #notes-container {
+        margin-top: 15px; /* Adjust space between video and notes */
+        padding: 8px;
+      }
+
+      #notes-container h3 {
+        font-size: 18px;
+      }
+
+      #notes-container p {
+        font-size: 14px; /* Smaller font size for better mobile readability */
+      }
+    }
   </style>
 </head>
 
 <body>
-  <!-- Video Container -->
+  <div id="header"></div>
+  <!-- Title for the video -->
   <div id="video-container">
-    <div class="yt-frame-container">
-      <iframe id="video-frame" frameborder="0"
-        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    </div>
-
-    <!-- Video Controls -->
-    <div class="video-controls">
-      <button id="play-pause-btn"><i class="bx bx-play"></i></button>
-      <div class="video-slider">
-        <input type="range" id="video-progress" min="0" value="0" max="100" step="1">
-      </div>
-      <button id="mute-btn"><i class="bx bx-volume-full"></i></button>
-      <button id="fullscreen-btn"><i class="bx bx-fullscreen"></i></button>
-    </div>
+    <div id="video-title">Loading video title...</div>
+    <video id="s3-video" controls controlslist="nodownload"  data-watermark="Your Dynamic Watermark" data-dyntube-key="abcd1234">
+      Your browser does not support the video tag.
+    </video>
+    <div id="watermark">ReviseIt</div> <!-- Watermark here -->
   </div>
+  <div id="notes-container"></div>
 
   <script>
+    document.addEventListener("keydown", function (event) {
+      // Check if the key is F12 or any other key combination with F12
+      if (event.key === "F12" || (event.key === "F12" && event.ctrlKey) || (event.key === "F12" && event.shiftKey)) {
+        event.preventDefault();  // Prevent the default action (open developer tools)
+      }
+    });
+    document.addEventListener('contextmenu', event => event.preventDefault());
+
     window.addEventListener("load", function () {
+      // Get the video element and title
+      const video = document.getElementById("s3-video");
+      const videoTitle = document.getElementById("video-title");
+      const notesContainer = document.getElementById("notes-container");
+
+      // Get the video URL, title, and notes from query parameters (dynamically)
       const urlParams = new URLSearchParams(window.location.search);
-      const videoUrl = urlParams.get("videoUrl");
+      const videoUrl = urlParams.get("videoUrl"); // This URL could be dynamically fetched from AWS S3
+      const videoTitleText = urlParams.get("subheadingTitle");
+      const notes = urlParams.get("notes");
 
-      // Embed video with parameters
+      // Base64 encode the URL dynamically when it is available
       if (videoUrl) {
-        const videoFrame = document.getElementById("video-frame");
-
-        // Extract the YouTube video ID using regex
-        const youtubeRegex = /(?:https?:\/\/(?:www\.)?youtube\.com\/(?:[^\/]+\/[^\/]+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=))([a-zA-Z0-9_-]{11})(?:[^\s]*)/;
-        const match = videoUrl.match(youtubeRegex);
-
-        if (match) {
-          const videoId = match[1];
-
-          // Construct the YouTube embed URL with parameters
-videoFrame.src = `https://www.youtube.com/embed/${videoId}?autoplay=0&mute=0&loop=1&controls=0&color=white&modestbranding=1&rel=0&showinfo=0&playsinline=1&enablejsapi=1&playlist=${videoId}`;
-        } else {
-          alert("Invalid YouTube URL.");
-        }
+        const encodedVideoUrl = btoa(videoUrl); // Encode the video URL dynamically
+        const decodedVideoUrl = atob(encodedVideoUrl); // Decode the URL back when needed
+        video.src = decodedVideoUrl; // Set the video source to the decoded URL
       } else {
         alert("No video URL found.");
       }
-      
-      const videoFrame = document.getElementById("video-frame");
-      const player = new YT.Player(videoFrame, {
-        events: {
-          'onReady': onPlayerReady,
-          'onStateChange': onPlayerStateChange
-        }
-      });
 
-      let isPlaying = false;
-      let isMuted = false;
-
-      // Play/Pause button
-      document.getElementById("play-pause-btn").addEventListener("click", function () {
-        if (isPlaying) {
-          player.pauseVideo();
-          document.getElementById("play-pause-btn").innerHTML = '<i class="bx bx-play"></i>';
-        } else {
-          player.playVideo();
-          document.getElementById("play-pause-btn").innerHTML = '<i class="bx bx-pause"></i>';
-        }
-        isPlaying = !isPlaying;
-      });
-
-      // Mute/Unmute button
-      document.getElementById("mute-btn").addEventListener("click", function () {
-        if (isMuted) {
-          player.unMute();
-          document.getElementById("mute-btn").innerHTML = '<i class="bx bx-volume-full"></i>';
-        } else {
-          player.mute();
-          document.getElementById("mute-btn").innerHTML = '<i class="bx bx-volume-mute"></i>';
-        }
-        isMuted = !isMuted;
-      });
-
-      // Fullscreen button
-     // Fullscreen button
-document.getElementById("fullscreen-btn").addEventListener("click", function () {
-  const iframe = document.getElementById("video-frame");
-  
-  if (iframe.requestFullscreen) {
-    iframe.requestFullscreen();
-  } else if (iframe.mozRequestFullScreen) { // Firefox
-    iframe.mozRequestFullScreen();
-  } else if (iframe.webkitRequestFullscreen) { // Chrome, Safari and Opera
-    iframe.webkitRequestFullscreen();
-  } else if (iframe.msRequestFullscreen) { // IE/Edge
-    iframe.msRequestFullscreen();
-  }
-});
-
-
-      // Update video progress slider
-      setInterval(function () {
-        const progress = (player.getCurrentTime() / player.getDuration()) * 100;
-        document.getElementById("video-progress").value = progress;
-      }, 500);
-
-      // Seek video based on progress slider
-      document.getElementById("video-progress").addEventListener("input", function () {
-        const newTime = (player.getDuration() * this.value) / 100;
-        player.seekTo(newTime);
-      });
-
-      // Player ready callback
-      function onPlayerReady(event) {
-        // Video is ready to play
+      if (videoTitleText) {
+        videoTitle.textContent = decodeURIComponent(videoTitleText); // Display the video title
+      } else {
+        videoTitle.textContent = "No video title found."; // Default title if not found
       }
 
-      // Player state change callback
-      function onPlayerStateChange(event) {
-        if (event.data === YT.PlayerState.PLAYING) {
-          isPlaying = true;
-        } else if (event.data === YT.PlayerState.PAUSED || event.data === YT.PlayerState.ENDED) {
-          isPlaying = false;
-        }
+      if (notes) {
+        notesContainer.innerHTML = `<h3>Notes:</h3><p>${decodeURIComponent(notes)}</p>`; // Display the notes
+      } else {
+        notesContainer.innerHTML = "<h3>Notes:</h3><p>No notes available.</p>";
+      }
+    });
+
+    function loadNavbar() {
+      fetch("navbar.html")
+        .then((response) => response.text())
+        .then((data) => {
+          document.getElementById("header").innerHTML = data;
+        });
+    }
+
+    window.onload = loadNavbar;
+
+    // Handle fullscreen mode to ensure the watermark stays on top
+    document.getElementById("s3-video").addEventListener('fullscreenchange', function () {
+      const watermark = document.getElementById('watermark');
+      const videoContainer = document.getElementById('video-container');
+      if (document.fullscreenElement) {
+        // In fullscreen, make watermark fixed and on top
+        watermark.style.position = 'fixed'; // Fix the watermark position when in fullscreen
+        watermark.style.bottom = '10px'; // Ensure it's properly positioned in fullscreen
+        watermark.style.right = '10px';
+        watermark.style.zIndex = '9999'; // Ensure it's on top of the video
+        videoContainer.style.position = 'relative'; // Ensure container doesn't affect watermark
+      } else {
+        watermark.style.position = 'absolute'; // Reset to absolute when not in fullscreen
+        watermark.style.bottom = '10px'; // Adjust the bottom position
+        watermark.style.right = '10px'; // Adjust the right position
+        watermark.style.zIndex = '1'; // Reset z-index when not fullscreen
+        videoContainer.style.position = 'relative';
       }
     });
   </script>
-  <script src="https://www.youtube.com/iframe_api"></script>
 </body>
 
 </html>

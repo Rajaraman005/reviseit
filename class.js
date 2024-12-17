@@ -137,24 +137,28 @@ document.addEventListener("DOMContentLoaded", function () {
             subheadingItem.textContent = subheading.title || subheading;
             subheadingItem.classList.add("subheading-item");
 
-            // Make the subheading clickable by adding an event listener
-           subheadingItem.addEventListener("click", function () {
-             if (subheading.videoLink) {
-               const subheadingTitle = subheading.title || subheading;
-               const videoUrl = encodeURIComponent(subheading.videoLink);
-               const subheadingTitleEncoded =
-                 encodeURIComponent(subheadingTitle);
+       subheadingItem.addEventListener("click", function () {
+         if (subheading.videoLink) {
+           const subheadingTitle = subheading.title || subheading;
+           const notes = subheading.notes || "No notes available"; // Fetch notes
 
-               // Redirect to video page with videoUrl and subheading title as URL parameters
-               window.location.href = `video.html?videoUrl=${videoUrl}&subheadingTitle=${subheadingTitleEncoded}`;
+           // Replace video link handling for Amazon S3/CloudFront
+           const videoUrl = encodeURIComponent(subheading.videoLink);
+           const subheadingTitleEncoded = encodeURIComponent(subheadingTitle);
+           const notesEncoded = encodeURIComponent(notes); // Encode notes
 
-               videoTopicHeader.textContent = `Video: ${
-                 subheadingTitle || subheading
-               }`;
-             } else {
-               alert("No video link available for this subheading.");
-             }
-           });
+           // Redirect to video page with videoUrl, subheading title, and notes as URL parameters
+           window.location.href = `video.html?videoUrl=${videoUrl}&subheadingTitle=${subheadingTitleEncoded}&notes=${notesEncoded}`;
+
+           // Update the video topic header
+           videoTopicHeader.textContent = `Video: ${subheadingTitle}`;
+         } else {
+           alert("No video link available for this subheading.");
+         }
+       });
+
+
+
 
 
             subtopicsContainer.appendChild(subheadingItem);
