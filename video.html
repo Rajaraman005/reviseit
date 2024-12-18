@@ -7,10 +7,11 @@
   <link rel="stylesheet" href="style.css">
   <link rel="shortcut icon" href="./src/logo.jpg" type="image/x-icon">
   <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+  
   <title>Reviseit</title>
 
   <style>
-    /* General Reset */
+    
     * {
       margin: 0;
       padding: 0;
@@ -52,7 +53,7 @@
       bottom: 10px;
       right: 10px;
       font-size: 24px;
-      color: rgba(255, 255, 255, 0.5); /* White with opacity */
+      color: rgba(255, 255, 255, 0.8); /* White with opacity */
       font-weight: bold;
       z-index: 1;
       pointer-events: none; /* Prevent the watermark from interfering with video controls */
@@ -93,6 +94,8 @@
       line-height: 1.5;
     }
 
+
+
     /* Media query for mobile screens */
     @media screen and (max-width: 768px) {
       body {
@@ -105,7 +108,7 @@
 
       #video-container {
         width: 100%;
-        margin-top: 10%;
+        margin-top: 20%;
       }
 
       #s3-video {
@@ -125,6 +128,7 @@
         font-size: 14px; /* Smaller font size for better mobile readability */
       }
     }
+ 
   </style>
 </head>
 
@@ -133,7 +137,8 @@
   <!-- Title for the video -->
   <div id="video-container">
     <div id="video-title">Loading video title...</div>
-    <video id="s3-video" controls controlslist="nodownload"  data-watermark="Your Dynamic Watermark" data-dyntube-key="abcd1234">
+    <video id="s3-video"  controls controlslist="nodownload" 
+     data-watermark="ReviseIt" data-dyntube-key="abcd1234"  >
       Your browser does not support the video tag.
     </video>
     <div id="watermark">ReviseIt</div> <!-- Watermark here -->
@@ -212,6 +217,9 @@
         videoContainer.style.position = 'relative';
       }
     });
+
+    
+    
   </script>
 </body>
 
