@@ -1,279 +1,221 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="./src/logo.png" type="image/x-icon">
     <title>Reviseit</title>
+    <link rel="shortcut icon" href="./src/logo.jpg" type="image/x-icon">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Dark Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+        * {
+            -webkit-tap-highlight-color: transparent;
+            -webkit-focus-ring-color: transparent;
+            outline: none;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        body {
+            background-color: #EEF1F8;
+            margin: 0;
+            padding: 0;
+        }
 
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
-}
+        a { text-decoration: none; }
 
-body{
-    background-color: #c9d6ff;
-    background: linear-gradient(to right, #e2e2e2, #c9d6ff);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    height: 100vh;
-}
+        .container {
+            width: 72%;
+            height: 85%;
+            background-color: #FFFFFF;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 2px 2px 30px rgba(66, 57, 238, .2);
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url('./src/login bg.gif');
+            background-repeat: no-repeat;
+            background-size: cover;
+            transition: all 0.5s ease;
+        }
 
-.container{
-    background-color: #fff;
-    border-radius: 30px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
-    position: relative;
-    overflow: hidden;
-    width: 768px;
-    max-width: 100%;
-    min-height: 480px;
-}
+        .sign-up {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-.container p{
-    font-size: 14px;
-    line-height: 20px;
-    letter-spacing: 0.3px;
-    margin: 20px 0;
-}
+        .heading {
+            font-family: calibri;
+            color: rgba(30, 30, 30, 1);
+        }
 
-.container span{
-    font-size: 12px;
-}
+        .text {
+            width: 350px;
+            height: 50px;
+            box-shadow: 2px 6px 18px rgba(0, 0, 0, 0.1);
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px;
+        }
 
-.container a{
-    color: #333;
-    font-size: 13px;
-    text-decoration: none;
-    margin: 15px 0 10px;
-}
+        .text input {
+            height: 40px;
+            width: 80%;
+            outline: none;
+            border: none;
+            font-size: 14px;
+            margin: 5px;
+        }
 
-.container button{
-    background-color: #512da8;
-    color: #fff;
-    font-size: 12px;
-    padding: 10px 45px;
-    border: 1px solid transparent;
-    border-radius: 8px;
-    font-weight: 600;
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    margin-top: 10px;
-    cursor: pointer;
-}
+        .text i {
+            color: #333;
+            margin-left: 20px;
+        }
 
-.container button.hidden{
-    background-color: transparent;
-    border-color: #fff;
-}
+        .conditions {
+            font-family: myriad pro;
+            color: #58595a;
+            font-size: 14px;
+        }
 
-.container form{
-    background-color: #fff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 0 40px;
-    height: 100%;
-}
+        .conditions a { color: rgb(10, 244, 10); font-weight: 500; }
 
-.container input{
-    background-color: #eee;
-    border: none;
-    margin: 8px 0;
-    padding: 10px 15px;
-    font-size: 13px;
-    border-radius: 8px;
-    width: 100%;
-    outline: none;
-}
+        .terms { display: flex; align-items: center; }
 
-.form-container{
-    position: absolute;
-    top: 0;
-    height: 100%;
-    transition: all 0.6s ease-in-out;
-}
+        button {
+            width: 200px;
+            height: 40px;
+            outline: none;
+            border: none;
+            border-radius: 20px;
+            background: linear-gradient(-30deg, rgb(0, 0, 0), rgb(0, 0, 0) 55%);
+            box-shadow: 2px 6px 16px rgba(10, 244, 10, 0.1);
+            color: #FFFFFF;
+            font-weight: 600;
+            letter-spacing: 1px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all .3s ease;
+        }
 
-.sign-in{
-    left: 0;
-    width: 50%;
-    z-index: 2;
-}
+        button:active { transform: scale(1.1); }
 
-.container.active .sign-in{
-    transform: translateX(100%);
-}
+        .sign-in {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
 
-.sign-up{
-    left: 0;
-    width: 50%;
-    opacity: 0;
-    z-index: 1;
-}
+        .text-container {
+            width: 50%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
 
-.container.active .sign-up{
-    transform: translateX(100%);
-    opacity: 1;
-    z-index: 5;
-    animation: move 0.6s;
-}
+        .text-container p {
+            width: 70%;
+            text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 13px;
+            font-weight: 400;
+        }
 
-@keyframes move{
-    0%, 49.99%{
-        opacity: 0;
-        z-index: 1;
-    }
-    50%, 100%{
-        opacity: 1;
-        z-index: 5;
-    }
-}
+        .text-container h1 {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #2D2C2C;
+            line-height: 20px;
+        }
 
-.social-icons{
-    margin: 20px 0;
-}
+        @media screen and (max-width: 1080px) {
+            .text-container { display: none;}
+            .container { height: 70%; }
+        }
 
-.social-icons a{
-    border: 1px solid #ccc;
-    border-radius: 20%;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 3px;
-    width: 40px;
-    height: 40px;
-}
+        @media screen and (max-width: 600px) {
+            .container { width: 85%; }
+        }
 
-.toggle-container{
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 50%;
-    height: 100%;
-    overflow: hidden;
-    transition: all 0.6s ease-in-out;
-    border-radius: 150px 0 0 100px;
-    z-index: 1000;
-}
+        @media screen and (max-width: 500px) {
+            .text { width: 300px; }
+        }
 
-.container.active .toggle-container{
-    transform: translateX(-100%);
-    border-radius: 0 150px 100px 0;
-}
+        @media screen and (max-width: 420px) {
+            .container { width: 95%; }
+            .heading { text-align: center; }
+            .conditions { text-align: center; }
+            input[type="checkbox"] { margin-right: 5px; }
+            .text {width: 280px; }
+        }
 
-.toggle{
-    background-color: #512da8;
-    height: 100%;
-    background: linear-gradient(to right, #5c6bc0, #512da8);
-    color: #fff;
-    position: relative;
-    left: -100%;
-    height: 100%;
-    width: 200%;
-    transform: translateX(0);
-    transition: all 0.6s ease-in-out;
-}
-
-.container.active .toggle{
-    transform: translateX(50%);
-}
-
-.toggle-panel{
-    position: absolute;
-    width: 50%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 0 30px;
-    text-align: center;
-    top: 0;
-    transform: translateX(0);
-    transition: all 0.6s ease-in-out;
-}
-
-.toggle-left{
-    transform: translateX(-200%);
-}
-
-.container.active .toggle-left{
-    transform: translateX(0);
-}
-
-.toggle-right{
-    right: 0;
-    transform: translateX(0);
-}
-
-.container.active .toggle-right{
-    transform: translateX(200%);
-}
     </style>
-</head>
 
+</head>
 <body>
 
-    <div class="container" id="container">
-        <div class="form-container sign-up">
-            <form>
-                <h1>Create Account</h1>
-                <div class="social-icons">
-                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
-                </div>
-                <span>or use your email for registeration</span>
-                <input type="text" placeholder="Name">
-                <input type="email" placeholder="Email">
-                <input type="password" placeholder="Password">
-                <button>Sign Up</button>
-            </form>
-        </div>
-        <div class="form-container sign-in">
-            <form>
-                <h1>Sign In</h1>
-                <div class="social-icons">
-                    <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-facebook-f"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
-                    <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
-                </div>
-                <span>or use your email password</span>
-                <input type="email" placeholder="Email">
-                <input type="password" placeholder="Password">
-                <a href="#">Forget Your Password?</a>
-                <button>Sign In</button>
-            </form>
-        </div>
-        <div class="toggle-container">
-            <div class="toggle">
-                <div class="toggle-panel toggle-left">
-                    <h1>Welcome Back!</h1>
-                    <p>Enter your personal details to use all of site features</p>
-                    <button class="hidden" id="login">Sign In</button>
-                </div>
-                <div class="toggle-panel toggle-right">
-                    <h1>Hello, Friend!</h1>
-                    <p>Register with your personal details to use all of site features</p>
-                    <button class="hidden" id="register">Sign Up</button>
-                </div>
+    <div class="container">
+        <form class="sign-up" action="/" method="POST" id="signup" onsubmit="return validateForm()">
+            <h1 class="heading">Hello, Student!</h1>
+          
+            <div class="text">
+                <i class="fas fa-envelope"></i>
+                <input type="email" name="email" placeholder="Email" required id="email">
             </div>
+            
+            <div class="text">
+                <i class="fas fa-lock"></i>
+                <input type="password" name="password" placeholder="Password" required id="password">
+            </div>
+
+            <div class="terms">
+                <input type="checkbox" name="terms" required>
+                <p class="conditions">I read and agree to <a href="#">terms & conditions</a></p>
+            </div>
+
+            <button type="submit">LOGIN</button>
+            <p class="conditions">Don't have an account? <a href="signup.html">Sign up</a></p>
+        </form>
+
+        <div class="text-container">
+            <h1>Glad to see you!</h1>
+            <p>Welcome, please fill in the blanks for login</p>
         </div>
     </div>
 
-    <script src="script.js"></script>
-</body>
+    <script>
+        function validateForm() {
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
 
+            // Email validation
+            var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+            if (!email.match(emailPattern)) {
+                alert('Please enter a valid email address.');
+                return false;
+            }
+
+            // Password validation
+            if (password.length < 6) {
+                alert('Password must be at least 6 characters long.');
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+
+</body>
 </html>
