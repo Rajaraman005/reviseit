@@ -1,0 +1,327 @@
+{
+  "b.sc.cs": {
+    "years": 3,
+    "semesters": {
+      "1": {
+        "subjects": {
+          "Mathematics": [
+            {
+              "topic": "Calculus",
+              "subheading": [
+                {
+                  "title": "Limits",
+                  "videoLink": "https://ds664kpek4vuj.cloudfront.net/limits",
+                  "notes": "Limits describe the behavior of a function as it approaches a specific point."
+                },
+                {
+                  "title": "Derivatives",
+                  "videoLink": "https://ds664kpek4vuj.cloudfront.net/derivatives",
+                  "notes": "Derivatives represent the rate of change of a function."
+                },
+                {
+                  "title": "Integrals",
+                  "videoLink": "https://ds664kpek4vuj.cloudfront.net/integrals",
+                  "notes": "Integrals compute the area under a curve."
+                },
+                {
+                  "title": "Differential Equations",
+                  "videoLink": "https://ds664kpek4vuj.cloudfront.net/differential-equations",
+                  "notes": "Equations involving derivatives of functions."
+                }
+              ]
+            }
+          ],
+          "Physics": [
+            {
+              "topic": "Mechanics",
+              "subheading": [
+                {
+                  "title": "Laws of Motion",
+                  "videoLink": "https://ds664kpek4vuj.cloudfront.net/laws-of-motion",
+                  "notes": "Newton's laws describe the motion of objects under force."
+                },
+                {
+                  "title": "Work and Energy",
+                  "videoLink": "https://ds664kpek4vuj.cloudfront.net/work-and-energy",
+                  "notes": "Work-energy theorem relates work and kinetic energy."
+                },
+                {
+                  "title": "Momentum",
+                  "videoLink": "https://ds664kpek4vuj.cloudfront.net/momentum",
+                  "notes": "Momentum is the product of mass and velocity."
+                },
+                {
+                  "title": "Circular Motion",
+                  "videoLink": "https://ds664kpek4vuj.cloudfront.net/circular-motion",
+                  "notes": "Objects moving in circular paths experience centripetal force."
+                }
+              ]
+            }
+          ],
+          "Chemistry": [
+            {
+              "topic": "Organic Chemistry",
+              "subheading": [
+                {
+                  "title": "Hydrocarbons",
+                  "videoLink": "https://ds664kpek4vuj.cloudfront.net/hydrocarbons",
+                  "notes": "Hydrocarbons are compounds made of hydrogen and carbon."
+                },
+                {
+                  "title": "Alkanes and Alkenes",
+                  "videoLink": "https://ds664kpek4vuj.cloudfront.net/alkanes-alkenes",
+                  "notes": "Alkanes are saturated, while alkenes have double bonds."
+                },
+                {
+                  "title": "Isomerism",
+                  "videoLink": "https://ds664kpek4vuj.cloudfront.net/isomerism",
+                  "notes": "Isomers have the same formula but different structures."
+                },
+                {
+                  "title": "Aromatic Compounds",
+                  "videoLink": "https://ds664kpek4vuj.cloudfront.net/aromatic-compounds",
+                  "notes": "Aromatic compounds contain benzene rings."
+                }
+              ]
+            }
+          ],
+          "Computer Science": [
+            {
+              "topic": "Programming Fundamentals",
+              "subheading": [
+                {
+                  "title": "Introduction to Programming",
+                  "videoLink": "https://ds664kpek4vuj.cloudfront.net/demovideo.mp4",
+                  "notes": "Programming involves writing instructions for a computer."
+                },
+                {
+                  "title": "Variables and Data Types",
+                  "videoLink": "https://ds664kpek4vuj.cloudfront.net/variables-data-types",
+                  "notes": "Variables store data of specific types."
+                },
+                {
+                  "title": "Control Structures",
+                  "videoLink": "https://ds664kpek4vuj.cloudfront.net/control-structures",
+                  "notes": "Control flow determines the execution order of statements."
+                },
+                {
+                  "title": "Functions",
+                  "videoLink": "https://ds664kpek4vuj.cloudfront.net/functions",
+                  "notes": "Functions group reusable code blocks."
+                }
+              ]
+            }
+          ],
+          "English": [
+            {
+              "topic": "English Proficiency",
+              "subheading": [
+                {
+                  "title": "Grammar",
+                  "videoLink": "https://ds664kpek4vuj.cloudfront.net/grammar",
+                  "notes": "Grammar includes sentence structure, tenses, and punctuation."
+                },
+                {
+                  "title": "Reading Comprehension",
+                  "videoLink": "https://ds664kpek4vuj.cloudfront.net/reading-comprehension",
+                  "notes": "Reading comprehension involves understanding written texts."
+                },
+                {
+                  "title": "Writing Skills",
+                  "videoLink": "https://ds664kpek4vuj.cloudfront.net/writing-skills",
+                  "notes": "Writing skills focus on formal and creative writing."
+                },
+                {
+                  "title": "Vocabulary",
+                  "videoLink": "https://ds664kpek4vuj.cloudfront.net/vocabulary",
+                  "notes": "Vocabulary building enhances language proficiency."
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "2": {
+        "subjects": {
+          "Mathematics": [
+            {
+              "topic": "Linear Algebra",
+              "subheading": [
+                {
+                  "title": "Matrix Operations",
+                  "videoLink": "https://ds664kpek4vuj.cloudfront.net/matrix-operations",
+                  "notes": "Matrix operations include addition, subtraction, and multiplication."
+                },
+                {
+                  "title": "Determinants",
+                  "videoLink": "https://ds664kpek4vuj.cloudfront.net/determinants",
+                  "notes": "Determinants help in solving linear equations."
+                },
+                {
+                  "title": "Eigenvalues and Eigenvectors",
+                  "videoLink": "https://ds664kpek4vuj.cloudfront.net/eigenvalues-eigenvectors",
+                  "notes": "Eigenvalues and eigenvectors are used in dimensionality reduction."
+                }
+              ]
+            }
+          ],
+          "Physics": [
+            {
+              "topic": "Electromagnetism",
+              "subheading": [
+                {
+                  "title": "Electric Fields",
+                  "videoLink": "https://ds664kpek4vuj.cloudfront.net/electric-fields",
+                  "notes": "Electric fields describe the force exerted by electric charges."
+                },
+                {
+                  "title": "Magnetic Fields",
+                  "videoLink": "https://ds664kpek4vuj.cloudfront.net/magnetic-fields",
+                  "notes": "Magnetic fields describe the force exerted by moving charges."
+                },
+                {
+                  "title": "Electromagnetic Waves",
+                  "videoLink": "https://ds664kpek4vuj.cloudfront.net/electromagnetic-waves",
+                  "notes": "Electromagnetic waves include light, radio waves, and X-rays."
+                }
+              ]
+            }
+          ],
+          "Chemistry": [
+            {
+              "topic": "Physical Chemistry",
+              "subheading": [
+                {
+                  "title": "Thermodynamics",
+                  "videoLink": "https://ds664kpek4vuj.cloudfront.net/thermodynamics",
+                  "notes": "Thermodynamics deals with the relationship between heat and work."
+                },
+                {
+                  "title": "Kinetics",
+                  "videoLink": "https://ds664kpek4vuj.cloudfront.net/kinetics",
+                  "notes": "Kinetics studies the rates of chemical reactions."
+                }
+              ]
+            }
+          ],
+          "Computer Science": [
+            {
+              "topic": "Data Structures",
+              "subheading": [
+                {
+                  "title": "Arrays",
+                  "videoLink": "https://ds664kpek4vuj.cloudfront.net/arrays",
+                  "notes": "Arrays store elements of the same type in contiguous memory."
+                },
+                {
+                  "title": "Linked Lists",
+                  "videoLink": "https://ds664kpek4vuj.cloudfront.net/linked-lists",
+                  "notes": "Linked lists are data structures where each element points to the next."
+                },
+                {
+                  "title": "Stacks and Queues",
+                  "videoLink": "https://ds664kpek4vuj.cloudfront.net/stacks-queues",
+                  "notes": "Stacks and queues are linear data structures used for specific use cases."
+                }
+              ]
+            }
+          ],
+          "English": [
+            {
+              "topic": "Advanced English Proficiency",
+              "subheading": [
+                {
+                  "title": "Advanced Grammar",
+                  "videoLink": "https://ds664kpek4vuj.cloudfront.net/advanced-grammar",
+                  "notes": "Advanced grammar focuses on complex sentence structures."
+                },
+                {
+                  "title": "Essay Writing",
+                  "videoLink": "https://ds664kpek4vuj.cloudfront.net/essay-writing",
+                  "notes": "Essay writing focuses on structure, clarity, and argumentation."
+                },
+                {
+                  "title": "Public Speaking",
+                  "videoLink": "https://ds664kpek4vuj.cloudfront.net/public-speaking",
+                  "notes": "Public speaking skills include presentation and communication techniques."
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "3": {
+        "subjects": {
+          "Mathematics": [
+            {
+              "topic": "Probability and Statistics",
+              "subheading": [
+                {
+                  "title": "Probability Theory",
+                  "videoLink": "https://ds664kpek4vuj.cloudfront.net/probability-theory",
+                  "notes": "Probability theory is used to model uncertain events."
+                },
+                {
+                  "title": "Random Variables",
+                  "videoLink": "https://ds664kpek4vuj.cloudfront.net/random-variables",
+                  "notes": "Random variables are used to represent uncertain quantities."
+                }
+              ]
+            }
+          ],
+          "Physics": [
+            {
+              "topic": "Quantum Mechanics",
+              "subheading": [
+                {
+                  "title": "Wave-Particle Duality",
+                  "videoLink": "https://ds664kpek4vuj.cloudfront.net/wave-particle-duality",
+                  "notes": "Wave-particle duality refers to the dual nature of particles and waves."
+                },
+                {
+                  "title": "Quantum States",
+                  "videoLink": "https://ds664kpek4vuj.cloudfront.net/quantum-states",
+                  "notes": "Quantum states describe the properties of particles at small scales."
+                }
+              ]
+            }
+          ],
+          "Chemistry": [
+            {
+              "topic": "Inorganic Chemistry",
+              "subheading": [
+                {
+                  "title": "Periodic Table",
+                  "videoLink": "https://ds664kpek4vuj.cloudfront.net/periodic-table",
+                  "notes": "The periodic table organizes elements based on their atomic numbers."
+                },
+                {
+                  "title": "Chemical Bonding",
+                  "videoLink": "https://ds664kpek4vuj.cloudfront.net/chemical-bonding",
+                  "notes": "Chemical bonding explains how atoms join to form molecules."
+                }
+              ]
+            }
+          ],
+          "Computer Science": [
+            {
+              "topic": "Algorithms",
+              "subheading": [
+                {
+                  "title": "Sorting Algorithms",
+                  "videoLink": "https://ds664kpek4vuj.cloudfront.net/sorting-algorithms",
+                  "notes": "Sorting algorithms arrange data in a specific order."
+                },
+                {
+                  "title": "Searching Algorithms",
+                  "videoLink": "https://ds664kpek4vuj.cloudfront.net/searching-algorithms",
+                  "notes": "Searching algorithms are used to locate elements in data."
+                }
+              ]
+            }
+          ]
+        }
+      }
+    }
+  }
+}

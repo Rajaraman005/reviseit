@@ -22,8 +22,18 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    fetch(`54.169.179.222/college/{collegeCode}.json`)
-      .then((response) => response.json())
+    // Dynamically construct the URL with the formatted college code
+    const url = `https://raw.githubusercontent.com/Rajaraman005/reviseit/main/college/${encodeURIComponent(
+      collegeCode
+    )}.json`;
+
+    fetch(url)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
+        }
+        return response.json();
+      })
       .then((data) => {
         collegeData = data;
         populateDepartments(Object.keys(data));
@@ -33,6 +43,8 @@ document.addEventListener("DOMContentLoaded", function () {
         console.error("Error loading college data:", error);
         alert("Invalid college code or file not found.");
       });
+
+    console.log("Fetching URL:", url);
   });
 
   function populateDepartments(departments) {
@@ -137,29 +149,26 @@ document.addEventListener("DOMContentLoaded", function () {
             subheadingItem.textContent = subheading.title || subheading;
             subheadingItem.classList.add("subheading-item");
 
-       subheadingItem.addEventListener("click", function () {
-         if (subheading.videoLink) {
-           const subheadingTitle = subheading.title || subheading;
-           const notes = subheading.notes || "No notes available"; // Fetch notes
+            subheadingItem.addEventListener("click", function () {
+              if (subheading.videoLink) {
+                const subheadingTitle = subheading.title || subheading;
+                const notes = subheading.notes || "No notes available"; // Fetch notes
 
-           // Replace video link handling for Amazon S3/CloudFront
-           const videoUrl = encodeURIComponent(subheading.videoLink);
-           const subheadingTitleEncoded = encodeURIComponent(subheadingTitle);
-           const notesEncoded = encodeURIComponent(notes); // Encode notes
+                // Replace video link handling for Amazon S3/CloudFront
+                const videoUrl = encodeURIComponent(subheading.videoLink);
+                const subheadingTitleEncoded =
+                  encodeURIComponent(subheadingTitle);
+                const notesEncoded = encodeURIComponent(notes); // Encode notes
 
-           // Redirect to video page with videoUrl, subheading title, and notes as URL parameters
-           window.location.href = `video.html?videoUrl=${videoUrl}&subheadingTitle=${subheadingTitleEncoded}&notes=${notesEncoded}`;
+                // Redirect to video page with videoUrl, subheading title, and notes as URL parameters
+                window.location.href = `video.html?videoUrl=${videoUrl}&subheadingTitle=${subheadingTitleEncoded}&notes=${notesEncoded}`;
 
-           // Update the video topic header
-           videoTopicHeader.textContent = `Video: ${subheadingTitle}`;
-         } else {
-           alert("No video link available for this subheading.");
-         }
-       });
-
-
-
-
+                // Update the video topic header
+                videoTopicHeader.textContent = `Video: ${subheadingTitle}`;
+              } else {
+                alert("No video link available for this subheading.");
+              }
+            });
 
             subtopicsContainer.appendChild(subheadingItem);
           });
@@ -235,3 +244,21 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 });
+fetch(url)
+  .then((response) => {
+    if (!response.ok) {
+      throw new Error(
+        `Network response was not ok. Status: ${response.status}`
+      );
+    }
+    return response.json();
+  })
+  .then((data) => {
+    collegeData = data;
+    populateDepartments(Object.keys(data));
+    departmentDropdown.disabled = false;
+  })
+  .catch((error) => {
+    console.error("Error loading college data:", error);
+    alert("Invalid college code or file not found.");
+  });
