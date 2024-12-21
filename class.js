@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    fetch(`./college/${collegeCode}.json`)
+    fetch(`./var/www/html/college/{collegeCode}.json`)
       .then((response) => response.json())
       .then((data) => {
         collegeData = data;
