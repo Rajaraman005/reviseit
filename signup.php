@@ -2,7 +2,7 @@
 // Database connection details
 $servername = "reviseit-db.cvu6mm6w044c.ap-southeast-1.rds.amazonaws.com"; // Replace with your RDS endpoint
 $username = "newuser";  // Replace with your MySQL username (e.g., 'newuser')
-$password = "newpassword";  // Replace with your MySQL password (e.g., 'newpassword')
+$password = "password005";  // Replace with your MySQL password (e.g., 'newpassword')
 $dbname = "reviseit";  // The database name
 
 // Create connection
