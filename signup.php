@@ -1,8 +1,8 @@
 <?php
 // Database connection
-$servername = "reviseit.cvu6mm6w044c.ap-southeast-1.rds.amazonaws.com";   // Replace with your EC2 public IP
-$username = "reviseitadmin";     // Replace with your MySQL username
-$password = "Reviseit005";     // Replace with your MySQL password
+$servername = "reviseit-db.cvu6mm6w044c.ap-southeast-1.rds.amazonaws.com";   // Replace with your EC2 public IP
+$username = "root";     // Replace with your MySQL username
+$password = "password005";     // Replace with your MySQL password
 $dbname = "reviseit";                  // Database name
 
 $conn = new mysqli($servername, $username, $password, $dbname);

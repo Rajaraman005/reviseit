@@ -9,10 +9,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let collegeData = {};
 
-  departmentDropdown.disabled = true;
-  yearDropdown.disabled = true;
-  semesterDropdown.disabled = true;
-  subjectDropdown.disabled = true;
+  // Disable dropdowns initially
+  [departmentDropdown, yearDropdown, semesterDropdown, subjectDropdown].forEach(
+    (dropdown) => (dropdown.disabled = true)
+  );
 
   collegeInput.addEventListener("change", function () {
     const collegeCode = this.value.trim().toLowerCase();
@@ -22,7 +22,6 @@ document.addEventListener("DOMContentLoaded", function () {
       return;
     }
 
-    // Dynamically construct the URL with the formatted college code
     const url = `https://raw.githubusercontent.com/Rajaraman005/reviseit/main/college/${encodeURIComponent(
       collegeCode
     )}.json`;
@@ -30,7 +29,9 @@ document.addEventListener("DOMContentLoaded", function () {
     fetch(url)
       .then((response) => {
         if (!response.ok) {
-          throw new Error("Network response was not ok");
+          throw new Error(
+            `Network response was not ok. Status: ${response.status}`
+          );
         }
         return response.json();
       })
@@ -56,9 +57,9 @@ document.addEventListener("DOMContentLoaded", function () {
       option.textContent = department.toUpperCase();
       departmentDropdown.appendChild(option);
     });
-    yearDropdown.disabled = true;
-    semesterDropdown.disabled = true;
-    subjectDropdown.disabled = true;
+
+    // Reset dependent dropdowns and topics
+    resetDropdowns([yearDropdown, semesterDropdown, subjectDropdown]);
     topicsContainer.innerHTML = "";
   }
 
@@ -69,8 +70,9 @@ document.addEventListener("DOMContentLoaded", function () {
       const { years } = collegeData[selectedDepartment];
       populateYearDropdown(years);
       yearDropdown.disabled = false;
-      semesterDropdown.disabled = true;
-      subjectDropdown.disabled = true;
+
+      // Reset dependent dropdowns and topics
+      resetDropdowns([semesterDropdown, subjectDropdown]);
       topicsContainer.innerHTML = "";
     }
   });
@@ -83,7 +85,9 @@ document.addEventListener("DOMContentLoaded", function () {
       const { semesters } = collegeData[selectedDepartment];
       populateSemesterDropdown(selectedYear, semesters);
       semesterDropdown.disabled = false;
-      subjectDropdown.disabled = true;
+
+      // Reset dependent dropdowns and topics
+      resetDropdowns([subjectDropdown]);
       topicsContainer.innerHTML = "";
     }
   });
@@ -130,19 +134,18 @@ document.addEventListener("DOMContentLoaded", function () {
         mainTopic.classList.add("main-topic");
         mainTopic.setAttribute("data-index", index);
 
-        // Add the line connecting parent (topic) to children
         const topicLine = document.createElement("div");
         topicLine.classList.add("topic-line");
         topicItem.appendChild(topicLine);
 
         const subtopicsContainer = document.createElement("div");
         subtopicsContainer.classList.add("subtopics-container");
-        subtopicsContainer.style.display = "none"; // Initially hidden
+        subtopicsContainer.style.display = "none";
 
         if (topic.subheading) {
           const subheadings = Array.isArray(topic.subheading)
             ? topic.subheading
-            : topic.subheading.split(","); // Convert string to array if needed
+            : topic.subheading.split(",");
 
           subheadings.forEach((subheading) => {
             const subheadingItem = document.createElement("p");
@@ -152,18 +155,15 @@ document.addEventListener("DOMContentLoaded", function () {
             subheadingItem.addEventListener("click", function () {
               if (subheading.videoLink) {
                 const subheadingTitle = subheading.title || subheading;
-                const notes = subheading.notes || "No notes available"; // Fetch notes
+                const notes = subheading.notes || "No notes available";
 
-                // Replace video link handling for Amazon S3/CloudFront
                 const videoUrl = encodeURIComponent(subheading.videoLink);
                 const subheadingTitleEncoded =
                   encodeURIComponent(subheadingTitle);
-                const notesEncoded = encodeURIComponent(notes); // Encode notes
+                const notesEncoded = encodeURIComponent(notes);
 
-                // Redirect to video page with videoUrl, subheading title, and notes as URL parameters
                 window.location.href = `video.html?videoUrl=${videoUrl}&subheadingTitle=${subheadingTitleEncoded}&notes=${notesEncoded}`;
 
-                // Update the video topic header
                 videoTopicHeader.textContent = `Video: ${subheadingTitle}`;
               } else {
                 alert("No video link available for this subheading.");
@@ -172,11 +172,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
             subtopicsContainer.appendChild(subheadingItem);
           });
-
-          // Add the line connecting the main topic to subtopics
-          const subtopicLine = document.createElement("div");
-          subtopicLine.classList.add("subtopic-line");
-          topicItem.appendChild(subtopicLine);
         } else {
           subtopicsContainer.innerHTML = "<p>No subheadings available</p>";
         }
@@ -194,9 +189,8 @@ document.addEventListener("DOMContentLoaded", function () {
               container.style.display = "none";
             }
           });
-          const isVisible =
-            subtopicsContainer.style.display === "block" ? true : false;
-          subtopicsContainer.style.display = isVisible ? "none" : "block";
+          subtopicsContainer.style.display =
+            subtopicsContainer.style.display === "block" ? "none" : "block";
         });
       });
 
@@ -243,22 +237,12 @@ document.addEventListener("DOMContentLoaded", function () {
       subjectDropdown.appendChild(option);
     }
   }
+
+  function resetDropdowns(dropdowns) {
+    dropdowns.forEach((dropdown) => {
+      dropdown.innerHTML =
+        '<option value="" disabled selected>Select Option</option>';
+      dropdown.disabled = true;
+    });
+  }
 });
-fetch(url)
-  .then((response) => {
-    if (!response.ok) {
-      throw new Error(
-        `Network response was not ok. Status: ${response.status}`
-      );
-    }
-    return response.json();
-  })
-  .then((data) => {
-    collegeData = data;
-    populateDepartments(Object.keys(data));
-    departmentDropdown.disabled = false;
-  })
-  .catch((error) => {
-    console.error("Error loading college data:", error);
-    alert("Invalid college code or file not found.");
-  });
