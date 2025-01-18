@@ -4,300 +4,206 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reviseit</title>
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="shortcut icon" href="./src/logo.jpg" type="image/x-icon">
-    <link rel="shortcut icon" href="https://github.com/Gustavo-Victor/theme-switcher/blob/main/assets/favicon/favicon-16x16.png" type="image/x-icon">
-    <script src="https://kit.fontawesome.com/bd3ea3309c.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     
+    <style>
+        * {
+            -webkit-tap-highlight-color: transparent;
+            -webkit-focus-ring-color: transparent;
+            outline: none;
+            font-family: 'Roboto', sans-serif; 
+        }
+        
+        body {
+            background-color: #EEF1F8;
+            margin: 0;
+            padding: 0;
+        }
+
+        a { text-decoration: none; }
+
+        .container {
+            width: 72%;
+            height: 85%;
+            background-color: #FFFFFF;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 2px 2px 30px rgba(66, 57, 238, .2);
+            border-radius: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url('./src/login bg.gif');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .sign-up {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .heading {
+            font-family: calibri;
+            color: rgba(30, 30, 30, 1);
+        }
+
+        .text {
+            width: 350px;
+            height: 50px;
+            box-shadow: 2px 6px 18px rgba(0, 0, 0, 0.1);
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px;
+        }
+
+        .text input {
+            height: 40px;
+            width: 80%;
+            outline: none;
+            border: none;
+            font-size: 14px;
+            margin: 5px;
+        }
+
+        .text i { 
+            color: #333;
+            margin-left: 20px;
+        }
+
+        .conditions {
+            font-family: myriad pro;
+            color: #58595a;
+            font-size: 14px;
+        }
+
+        .conditions a { color: rgb(10, 244, 10); font-weight: 500; }
+
+        .terms { display: flex; align-items: center; }
+
+        button {
+            width: 200px;
+            height: 40px;
+            outline: none;
+            border: none;
+            border-radius: 20px;
+            background: linear-gradient(-30deg, rgb(0, 0, 0), rgb(0, 0, 0) 55%);
+            box-shadow: 2px 6px 16px rgba(10, 244, 10, 0.1);
+            color: #FFFFFF;
+            font-weight: 600;
+            letter-spacing: 1px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all .3s ease;
+        }
+
+        button:active { transform: scale(1.1); }
+
+        .text-container {
+            width: 50%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .text-container p {
+            width: 70%;
+            text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 13px;
+            font-weight: 400;
+        }
+
+        .text-container h1 {
+            font-family: Arial, Helvetica, sans-serif;
+            color: #2D2C2C;
+            line-height: 20px;
+        }
+
+        @media screen and (max-width: 1080px) {
+            .text-container { display: none;}
+            .container { height: 90%; }
+        }
+
+        @media screen and (max-width: 600px) {
+            .container { width: 85%; }
+        }
+
+        @media screen and (max-width: 500px) {
+            .text { width: 300px; }
+        }
+
+        @media screen and (max-width: 420px) {
+            .container { width: 95%; }
+            .heading { text-align: center; }
+            .conditions { text-align: center; }
+            input[type="checkbox"] { margin-right: 5px; }
+            .text {width: 280px; }
+        }
+    </style>
+
 </head>
 <body>
-   
-    <header class="header">
-     <a href="index.html" class="logo">Reviseit</a>
-     <input type="checkbox" name="" id="check">
-     <label for="check" class="icons">
-        <i class='bx bx-menu-alt-left' id="menu-icon"></i>
-        <i class='bx bx-x' id="close-icon"></i>
-     </label>
-     <nav class="navbar">
-         <a href="#search">Home</a>
-         <a href="class.html">Classes</a>
-         <a href="#">Quiz</a>
-         <a href="#">Club</a>
-         <a href="#">Mentorship</a>
-    </nav>
-</header> 
-    </header>
-     <!-- <button id="theme-switcher">
-        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q14 0 27.5 1t26.5 3q-41 29-65.5 75.5T444-660q0 90 63 153t153 63q55 0 101-24.5t75-65.5q2 13 3 26.5t1 27.5q0 150-105 255T480-120Z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#5f6368"><path d="M440-760v-160h80v160h-80Zm266 110-55-55 112-115 56 57-113 113Zm54 210v-80h160v80H760ZM440-40v-160h80v160h-80ZM254-652 140-763l57-56 113 113-56 54Zm508 512L651-255l54-54 114 110-57 59ZM40-440v-80h160v80H40Zm157 300-56-57 112-112 29 27 29 28-114 114Zm283-100q-100 0-170-70t-70-170q0-100 70-170t170-70q100 0 170 70t70 170q0 100-70 170t-170 70Z"/></svg>
-    </button> -->
-    <div class="search" id="search">
-        <img src="./src/search.jpg" alt="Search Background">
-        <div class="overlay">
-            <p>Hello <span class="stu">Student</span>, What Topic do you want to Revise?</p>
-            <div class="search-box">
-                <div class="row">
-                    <input type="text" name="searchbar" id="search-box" placeholder="Search Topics" autocomplete="off">
-                    <button><i class="fa-solid fa-magnifying-glass"></i></button>
-                </div>
-                <div class="result-box">
-                </div>
+
+    <div class="container">
+        <form class="sign-up" action="signup.php" method="POST" id="signup">
+            <h1 class="heading">Hello, Student!</h1>
+          
+            <div class="text">
+                <i class="fas fa-user"></i>
+                <input type="text" name="name" placeholder="Name" required id="name">
+            </div>
+
+            <div class="text">
+                <i class="fas fa-envelope"></i>
+                <input type="email" name="email" placeholder="Email" required id="email">
             </div>
             
-           
+            <div class="text">
+                <i class="fas fa-phone-alt"></i>
+                <input type="tel" name="phone" placeholder="Phone Number" required id="phone" maxlength="13" value="+91" oninput="validatePhoneNumber()">
             </div>
-        </div>
-   
-    <div class="card-container" id="card-container">
-        <div class="card block">
-            <img id="img1" src="https://via.placeholder.com/150" alt="Book Image">
-            <div class="card-content">
-                <h3><span id="title1">Book Title 1</span></h3>
-                <p><span id="desc1">Short description of the content goes here.</span></p>
-                <button onclick="goToBookPage(1)">Read More</button>
-            </div>
-        </div>
 
-        <div class="card block">
-            <img id="img2" src="https://via.placeholder.com/150" alt="Book Image">
-            <div class="card-content">
-                <h3><span id="title2">Book Title 2</span></h3>
-                <p><span id="desc2">Short description of the content goes here.</span></p>
-                <button onclick="goToBookPage(2)">Read More</button>
+            <div class="text">
+                <i class="fas fa-lock"></i>
+                <input type="password" name="password" placeholder="Password" required id="password">
             </div>
-        </div>
-
-        <div class="card block">
-            <img id="img3" src="https://via.placeholder.com/150" alt="Book Image">
-            <div class="card-content">
-                <h3><span id="title3">Book Title 3</span></h3>
-                <p><span id="desc3">Short description of the content goes here.</span></p>
-                <button onclick="goToBookPage(3)">Read More</button>
-            </div>
-        </div>
-    </div>
-       
-        <div class="vision">Our <span class="stu">Vision</span></div>
-   <div class="timeline">
-    <div class="container left-conatiner block">
-        <img src="./src/r-solid.svg" alt="" srcset="">
-        <div class="text-box">
-            <h2>Empowering Students</h2>
-            <small>Unlock Your Potential</small>
-            <p>We offer tools and resources to help students excel academically. Our platform provides access to study materials, tutorials, and expert guidance. Whether for exams or exploring new topics, we ensure students have the resources they need. Our focus is personalized learning, helping students achieve their potential with knowledge and confidence for success.</p>
-            <span class="left-container-arrow"></span>
-        </div>
-    </div>
-    <div class="container right-conatiner block">
-        <img src="./src/e-solid.svg" alt="" srcset="">
-        <div class="text-box">
-            <h2>Guiding Educators</h2>
-            <small>Shaping Future Minds</small>
-            <p>We support teachers with innovative solutions to enhance teaching and learning. Our platform offers tools that help educators inspire the next generation. From lesson planning to classroom management, we equip teachers with the resources to create engaging learning experiences. Empowering teachers with technology helps shape the future of education.</p>
-            <span class="right-container-arrow"></span>
-        </div>
-    </div>
-    <div class="container left-conatiner block">
-        <img src="./src/v-solid.svg" alt="" srcset="">
-        <div class="text-box">
-            <h2>Fostering Creativity</h2>
-            <small>Think Beyond Limits</small>
-            <p>We encourage both students and teachers to embrace creativity and innovation in learning. By fostering creativity, we inspire students to think outside the box and explore new ways of learning and problem-solving. We provide tools and strategies for educators to adopt innovative teaching methods, making learning more dynamic and interactive.</p>
-            <span class="left-container-arrow"></span>
-        </div>
-    </div>
-    <div class="container right-conatiner block">
-        <img src="./src/i-solid.svg" alt="" srcset="">
-        <div class="text-box">
-            <h2>Building Connections</h2>
-            <small>Collaborate and Grow</small>
-            <p>We encourage creativity and innovation in learning processes. By fostering a culture of creativity, we inspire new ideas and approaches in education, enabling more dynamic and engaging learning experiences. Our goal is to empower individuals to explore innovative solutions in their academic and teaching journeys.</p>
-            <span class="right-container-arrow"></span>
-        </div>
-    </div>
-    <div class="container left-conatiner block">
-        <img src="./src/s-solid.svg" alt="" srcset="">
-        <div class="text-box">
-            <h2>Championing Education</h2>
-            <small>Learn. Teach. Lead.</small>
-            <p>We empower educators and learners to achieve excellence by fostering knowledge-sharing. Our platform facilitates collaboration and the exchange of ideas, helping both teachers and students grow and succeed together. By encouraging a culture of shared learning, we enhance educational outcomes and promote continuous development.</p>
-            <span class="left-container-arrow"></span>
-        </div>
-    </div>
-    <div class="container right-conatiner block">
-        <img src="./src/e-solid.svg" alt="" srcset="">
-        <div class="text-box">
-            <h2>Inspiring Growth</h2>
-            <small>Continuous Learning</small>
-            <p>We believe in lifelong learning to help both students and educators thrive in a dynamic world. Our platform provides resources for continuous development, whether through new skills or updated knowledge. Promoting ongoing learning ensures students stay ahead in their academic pursuits and educators remain effective in their teaching.</p>
-            <span class="right-container-arrow"></span>
-        </div>
-    </div>
-    <div class="container left-conatiner block">
-        <img src="./src/i-solid.svg" alt="" srcset="">
-        <div class="text-box">
-            <h2>Inspiring Innovation</h2>
-            <small>Think, Create, Innovate</small>
-            <p>We encourage both students and educators to embrace creativity and innovation as essential skills for a future-ready world. Our platform provides tools and resources to inspire new ideas in learning and teaching. By fostering a culture of innovation, we aim to equip students to tackle challenges and encourage educators to adopt creative teaching methods.</p>
-            <span class="right-container-arrow"></span>
-        </div>
-    </div>
-    <div class="container right-conatiner block">
-        <img src="./src/t-solid.svg" alt="" srcset="">
-        <div class="text-box">
-            <h2>Empowering Future Leaders</h2>
-            <small>Lead with Purpose</small>
-            <p>We provide opportunities and resources that help both students and educators become impactful leaders. Through leadership programs, skill-building workshops, and mentorship, we equip individuals with the tools to make a difference. By fostering a sense of responsibility and vision, we inspire students to take initiative and educators to mentor the next generation of leaders.</p>
-            <span class="right-container-arrow"></span>
             
-        </div>
-    </div>
-</div>
-
-<div class="about-works">
-    <h1 class="how-it">What we <span class="stu"> Offers</span></h1>
- </div>
-
-<div class="slider-container">
-      <div class="left-slide">
-        <div style="background-color: #B0ABA1">
-         <h1>Join a Learning Community</h1>
-         <p>Collaborate with peers, participate in clubs, and enhance your learning experience</p>
-        </div>
-        <div style="background-color: #F5D952">
-          <h1>complete Study Guides</h1>
-          <p>Get access to detailed notes and study guides to supplement your learning and prepare for exams</p>
-        </div>
-        
-        <div style="background-color:#E5DECA">
-          <h1>Interactive Quizzes to Test Your Knowledge</h1>
-          <p>Practice with topic-specific quizzes and track your progress with detailed feedback.</p>
-        </div>
-        <div style="background-color:#D9C39C">
-          <h1>Access Recorded Lectures Anytime</h1>
-          <p>Revise your lessons with high-quality recorded classes designed for easy understanding and effective learning.</p>
-        </div>
-      </div>
-      <div class="right-slide">
-        <div style="background-image: url('./src/record.jpg');"></div>
-        <div style="background-image: url('./src/quizz.jpg');"></div>
-        <div style="background-image: url('./src/books.jpg');"></div>
-        <div style="background-image: url('./src/community.jpg');"></div>
-      </div>
-      <div class="action-buttons">
-        <button class="down-button">
-          <i class="fas fa-arrow-down"></i>
-        </button>
-        <button class="up-button">
-          <i class="fas fa-arrow-up"></i>
-        </button>
-      </div>
-    </div>
-    <div class="about-works">
-    <h1 class="contact-us">Contact <span class="stu"> US</span></h1>
- </div>
-
-    <section id="section-wrapper">
-        <div class="box-wrapper">
-            <div class="info-wrap">
-                <h2 class="info-title">Contact Information</h2>
-                <h3 class="info-sub-title">Got Questions? Reach Out and We'll Respond Within a Day!</h3>
-                <ul class="info-details">
-                    <li>
-                        <i class="fas fa-phone-alt"></i>
-                        <span>Phone:</span> <a href="tel:+91 6383634873">+91 6383634873</a>
-                    </li>
-                    <li>
-                        <i class="fas fa-paper-plane"></i>
-                        <span>Email:</span> <a href="mailto:info@yoursite.com">info@Reviseit.in</a>
-                    </li>
-                    <li>
-                        <i class="fas fa-globe"></i>
-                        <span>Website:</span> <a href="#">
-                            Reviseit.in
-                        </a>
-                    </li>
-                </ul>
-                <ul class="social-icons">
-                    <li><a href="#"><i class="fab fa-facebook"></i></a></li>
-                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                </ul>
+            <div class="terms">
+                <input type="checkbox" name="terms" required>
+                <p class="conditions">I read and agree to <a href="terms.html">terms & conditions</a></p>
             </div>
-            <div class="form-wrap">
-                <form action="#" method="POST">
-                    <h2 class="form-title">Send us a message</h2>
-                    <div class="form-fields">
-                        <div class="form-group">
-                            <input type="text" class="fname" placeholder="First Name">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="lname" placeholder="Last Name">
-                        </div>
-                        <div class="form-group">
-                            <input type="email" class="email" placeholder="Mail">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="phone" placeholder="Phone">
-                        </div>
-                        <div class="form-group">
-                            <textarea name="message" id="" placeholder="Write your message"></textarea>
-                        </div>
-                    </div>
-                    <input type="submit" value="Send Message" class="submit-button">
-                </form>
-            </div>
-        </div>
-    </section>
-    <footer class="footer" role="contentinfo" itemscope itemtype="http://schema.org/WPFooter">
-    <div class="footer-left" itemscope itemtype="http://schema.org/Organization" class="h-card">
-        <img src="./src/logo.jpg" alt="Logo" itemprop="logo" class="u-logo logo" />
-        <h3 itemprop="name" class="p-name">Reviseit</h3>
-        <nav aria-label="Footer Navigation">
-            <p class="footer-links" >
-               ReviseIt is an innovative platform dedicated to enhancing student learning by providing easy access to recorded college lectures. Our mission is to empower students to revisit and revise their classes anytime, anywhere, ensuring better understanding and retention of concepts. With ReviseIt, learning extends beyond the classroom, tailored exclusively for your college community.
-            </p>
-        </nav>
-        <p class="footer-name">
-            Reviseit © 2024</p>
-    </div>
 
-    <div class="footer-center">
-        <div itemscope itemtype="http://schema.org/PostalAddress" class="p-address">
-            <i class="fa fa-map-marker" aria-hidden="true"></i>
-            <p>
-                <span itemprop="streetAddress" class="p-street-address">UMIYA Emporium</span>,
-                <span itemprop="addressLocality" class="p-locality">Tavarekere</span>,
-                <span itemprop="addressRegion" class="p-region">Bengaluru</span>,
-                <span itemprop="postalCode" class="p-postal-code">560029</span>
-            </p>
-        </div>
-        <div>
-            <i class="fa fa-phone" aria-hidden="true"></i>
-            <p itemprop="telephone" class="p-tel">+91 6383634873</p>
-        </div>
-        <div>
-            <i class="fa fa-envelope" aria-hidden="true"></i>
-            <p><a href="mailto:info@OnceAgain.in" itemprop="email" class="u-email">info@Reviseit.in</a></p>
+            <button type="submit">CREATE ACCOUNT</button>
+            <p class="conditions">Already have an account? <a href="login.html">Sign in</a></p>
+        </form>
+
+        <div class="text-container">
+            <h1>Thrilled to have you here! </h1>
+            <p>Sign up now and let’s get started!</p>
         </div>
     </div>
-
-    <div class="footer-right">
-        <p class="footer-about">
-            <span>About this site</span>
-ReviseIt offers recorded college lectures to help students revisit classes anytime, enhancing understanding and retention. Tailored for college communities, it makes learning flexible and accessible.        </p>
-        <div class="footer-socials">
-            <a href="#" rel="me" aria-label="Facebook" itemprop="sameAs" class="u-url"><i class="fa-brands fa-facebook"></i></a>
-            <a href="#" rel="me" aria-label="Twitter" itemprop="sameAs" class="u-url"><i class="fa-brands fa-x-twitter"></i></a>
-            <a href="#" rel="me" aria-label="LinkedIn" itemprop="sameAs" class="u-url"><i class="fa-brands fa-linkedin"></i></a>
-        </div>
-    </div>
-</footer>
-
-
-    <script src="script.js"></script>
- 
+    <script>
+        function validatePhoneNumber() {
+            let phoneInput = document.getElementById('phone');
+            if (phoneInput.value.length < 3) {
+                phoneInput.value = '+91';
+            }
+            phoneInput.value = phoneInput.value.replace(/[^0-9+]/g, '');
+            if (!phoneInput.value.startsWith('+91')) {
+                phoneInput.value = '+91' + phoneInput.value.slice(3); 
+            }
+        }
+    </script>
 </body>
 </html>

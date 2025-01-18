@@ -2,10 +2,10 @@ body {
     font-family: Arial, sans-serif;
     background-color: #ffffff;
     display: flex;
-    justify-content: center;
+    flex-direction: column; /* Stack elements vertically */
+    justify-content: center; /* Align items at the top */
     align-items: center;
-    height: 100vh;
-    margin: 0; /* Remove default margin */
+    
 }
 
 .form-container {
@@ -17,7 +17,8 @@ body {
     max-width: 90%; /* Ensure it fits on smaller screens */
     box-sizing: border-box; /* Include padding and border in width */
     text-align: left;
-    margin-top: 10%;
+    margin-top: 90px;
+    margin-bottom: 50px;
 }
 
 label {
@@ -79,9 +80,6 @@ select, input {
     color: #000000; /* Text color */
 }
 
-
-
-
 #topics-container div:last-child {
     margin-bottom: 0;  /* Removes the margin for the last topic item */
 }
@@ -115,13 +113,17 @@ select, input {
     justify-content: center;
     padding-left: 22px;
     cursor: pointer;
-   
 }
 
-
-
-
-
+/* Footer Styling */
+footer {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+    margin-top: auto; /* Push footer to the bottom */
+}
 
 /* Responsive Design */
 @media (max-width: 768px) {
@@ -145,4 +147,4 @@ select, input {
     button {
         padding: 8px 10px; /* Adjust button size */
     }
-}
+}  

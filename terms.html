@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reviseit</title>
+        <link rel="shortcut icon" href="./src/logo.jpg" type="image/x-icon">
+
+    <style>
+        *{
+            font-family:Arial, Helvetica, sans-serif;
+        }
+        .wrap {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-sizing: border-box;
+  height: 100%;
+  padding: 2rem;
+  background-color: #ffffff;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding: 1rem;
+    background: linear-gradient(135deg, #ffffff, #ffffff); 
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 768px;
+  height: 100%;
+  box-shadow: 0rem 1rem 2rem -0.25rem rgba(0, 0, 0, 0.25);
+   border: 2px solid rgba(0, 0, 0, 0.1);
+  
+  &__heading {
+    padding: 1rem 0;
+    border-bottom: 1px solid #ccc;
+    text-align: center;
+    
+    & > h2 {
+      font-size: 1.75rem;
+      line-height: 1.75rem;
+      margin: 0;
+    }
+  }
+  
+  &__content {
+    flex-grow: 1;
+    overflow-y: scroll;
+  }
+  
+  &__nav {
+    border-top: 1px solid #ccc;
+    text-align: right;
+    padding: 2rem 0 1rem;
+    
+    & > .button {
+      background-color: #444499;
+      box-shadow: 0rem 0.5rem 1rem -0.125rem rgba(0, 0, 0, 0.25);
+      padding: 0.8rem 2rem;
+      border-radius: 0.5rem;
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: transform 0.25s, box-shadow 0.25s;
+      
+      &:hover {
+        box-shadow: 0rem 0rem 1rem -0.125rem rgba(0, 0, 0, 0.25);
+        transform: translateY(-0.5rem);
+      }
+    }
+    
+    & > small {
+      color: #777;
+      margin-right: 1rem;
+    }
+  }
+}
+    </style>
+</head>
+<body>
+   
+    <main class="wrap">
+        
+  <section class="container">
+    <center> <h1 style="color:rgb(10, 244, 10);font-size: 32px;;">Reviseit</h1></center>
+    <div class="container__heading">
+      <h2>Terms & Conditions</h2>
+    </div>
+    <div class="container__content">
+      
+            <p>Welcome to ReviseIt! These terms and conditions outline the rules and regulations for the use of ReviseIt's website and services.</p>
+            
+            <h3>1. Acceptance of Terms</h3>
+            <p>By accessing and using our services, you agree to comply with these terms and conditions. If you do not agree with any part of these terms, you must not use our services.</p>
+            
+            <h3>2. Use of Services</h3>
+            <p>Our services are provided to allow users to view educational content uploaded by colleges or universities. Access to the content is restricted to registered users only.</p>
+
+            <h3>3. User Account</h3>
+            <p>You are responsible for maintaining the confidentiality of your account and password. You must notify us immediately of any unauthorized use of your account.</p>
+
+            <h3>4. Limitations of Liability</h3>
+            <p>We are not liable for any damages arising from the use of our services, including but not limited to data loss, service interruptions, or the use of third-party links.</p>
+
+            <h3>5. Modifications</h3>
+            <p>We reserve the right to modify or discontinue any part of our services without prior notice. These terms may be updated from time to time.</p>
+
+            <h3>6. Governing Law</h3>
+            <p>These terms are governed by the laws of the jurisdiction in which ReviseIt operates.</p>
+   
+     </div>
+   
+  </section>
+</main>
+    
+</body>
+</html>

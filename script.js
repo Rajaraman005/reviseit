@@ -22,6 +22,27 @@
 //   }
 // });
 
+document.addEventListener("DOMContentLoaded", () => {
+  const profile = document.querySelector(".profile");
+  const dropdownContainer = document.querySelector(".dropdown-container");
+
+  // Show dropdown when profile is clicked
+  profile.addEventListener("click", () => {
+    dropdownContainer.classList.toggle("active");
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener("click", (event) => {
+    if (
+      !profile.contains(event.target) &&
+      !dropdownContainer.contains(event.target)
+    ) {
+      dropdownContainer.classList.remove("active");
+    }
+  });
+});
+
+
 
 
 let availableKeywords = [
@@ -410,4 +431,7 @@ const changeSlide = (direction) => {
 };
 
 
+
+
+//quiz
 

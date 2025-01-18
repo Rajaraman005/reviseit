@@ -1,9 +1,14 @@
 <?php
-// Database connection details
-$servername = "reviseit-db.cvu6mm6w044c.ap-southeast-1.rds.amazonaws.com"; // Replace with your RDS endpoint
-$username = "newuser";  // Replace with your MySQL username (e.g., 'newuser')
-$password = "password005";  // Replace with your MySQL password (e.g., 'newpassword')
-$dbname = "reviseit";  // The database name
+// Enable error reporting for debugging
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+session_start(); // Start the session
+
+$servername = "127.0.0.1";  
+$username = "root";       
+$password = "";          
+$dbname = "reviseit"; // Database name
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -15,29 +20,75 @@ if ($conn->connect_error) {
 
 // Fetch the form data
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Sanitize and capture form values
-    $name = mysqli_real_escape_string($conn, $_POST['name']);
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $phone = mysqli_real_escape_string($conn, $_POST['phone']);
-    $password = password_hash($_POST['password'], PASSWORD_BCRYPT);  // Secure password hashing
+    // Sanitize and trim input data
+    $name = htmlspecialchars(trim($_POST['name']));
+    $email = htmlspecialchars(trim($_POST['email']));
+    $phone = htmlspecialchars(trim($_POST['phone']));
+    $password = htmlspecialchars(trim($_POST['password']));
 
-    // Prepare SQL query to insert data into the users table
-    $stmt = $conn->prepare("INSERT INTO users (name, email, phone, password) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("ssss", $name, $email, $phone, $password);
-
-    // Execute the query and check if successful
-    if ($stmt->execute()) {
-        echo "New record created successfully!";
-        // Redirect to login page after successful signup
-        header("Location: login.html");
-    } else {
-        echo "Error: " . $stmt->error;
+    // Validate inputs
+    if (empty($name) || empty($email) || empty($phone) || empty($password)) {
+        echo "<script>alert('All fields are required.');</script>";
+        echo "<script>window.location.href = 'signup.html';</script>";
+        exit();
     }
 
-    // Close the prepared statement
-    $stmt->close();
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo "<script>alert('Invalid email format.');</script>";
+        echo "<script>window.location.href = 'signup.html';</script>";
+        exit();
+    }
+
+    if (!preg_match('/^(\+?\d{1,4}[\s-]?)?(\(?\d{3}\)?[\s-]?)?[\d\s-]{7,10}$/', $phone)) {
+        echo "<script>alert('Invalid phone number format.');</script>";
+        echo "<script>window.location.href = 'signup.html';</script>";
+        exit();
+    }
+
+    // Hash the password
+    $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+
+    // Check if email or phone already exists
+    $checkStmt = $conn->prepare("SELECT * FROM users WHERE email = ? OR phone = ?");
+    if (!$checkStmt) {
+        die("Query preparation failed: " . $conn->error); // Shows more details about the failure
+    }
+
+    $checkStmt->bind_param("ss", $email, $phone);
+    $checkStmt->execute();
+    $result = $checkStmt->get_result();
+
+    if ($result->num_rows > 0) {
+        echo "<script>alert('Error: Email or phone number already exists.');</script>";
+        echo "<script>window.location.href = 'index.html';</script>";
+        exit();
+    } else {
+        // Prepare SQL query to insert data into the users table
+        $stmt = $conn->prepare("INSERT INTO users (name, email, phone, password) VALUES (?, ?, ?, ?)");
+        
+        if (!$stmt) {
+            die("Query preparation failed: " . $conn->error); // Error message to debug
+        }
+
+        $stmt->bind_param("ssss", $name, $email, $phone, $hashedPassword);
+
+        if ($stmt->execute()) {
+            // Set session variables after successful signup
+            $_SESSION['user_id'] = $stmt->insert_id; // Get the ID of the newly created user
+            $_SESSION['name'] = $name;
+            $_SESSION['email'] = $email;
+
+            header("Location: dashboard.php"); // Redirect to dashboard
+            exit(); // Ensure no further code is executed
+        } else {
+            echo "Error executing statement: " . $stmt->error;
+        }
+
+        $stmt->close();
+    }
+
+    $checkStmt->close();
 }
 
-// Close the database connection
 $conn->close();
 ?>

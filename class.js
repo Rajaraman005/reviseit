@@ -162,7 +162,7 @@ document.addEventListener("DOMContentLoaded", function () {
                   encodeURIComponent(subheadingTitle);
                 const notesEncoded = encodeURIComponent(notes);
 
-                window.location.href = `video.html?videoUrl=${videoUrl}&subheadingTitle=${subheadingTitleEncoded}&notes=${notesEncoded}`;
+                window.location.href = `video.php?videoUrl=${videoUrl}&subheadingTitle=${subheadingTitleEncoded}&notes=${notesEncoded}`;
 
                 videoTopicHeader.textContent = `Video: ${subheadingTitle}`;
               } else {

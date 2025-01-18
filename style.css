@@ -6,12 +6,19 @@
   -webkit-tap-highlight-color: transparent;
   -webkit-focus-ring-color: transparent;
   outline: none;
+  text-decoration: none;
 }
 html {
     scroll-behavior: smooth;
 }
 body{
   transition: background-color 0.5s ease, color 0.3s ease;
+}
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; text-decoration: none;
+    
 }
 /* .vision  {
   background: black;
@@ -290,6 +297,104 @@ button .fa-solid {
   }
 }
 
+.profile {
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    margin-left: -70px;
+    cursor: pointer;
+}
+
+.initials {
+    width: 2rem;
+    height: 2rem;
+    background-color: rgb(10, 244, 10); /* Green background */
+    color: white;
+    font-size: 1rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%; /* Circular shape */
+    text-transform: uppercase;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Dropdown container */
+.dropdown-container {
+    position: absolute;
+    top: 2.5rem; /* Adjusted to align below initials */
+    background: rgb(255, 255, 255);
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    opacity: 0; /* Hidden by default */
+    transform: translateX(-10px); /* Start slightly above */
+    transition: opacity 0.3s ease, transform 0.5s ease; /* Smooth transition */
+    z-index: 10;
+    padding: 19px 0;
+    pointer-events: none; /* Prevent interaction when hidden */
+}
+
+/* Show dropdown when active */
+.dropdown-container.active {
+    opacity: 1; /* Fully visible */
+    transform: translateY(0); /* Move to original position */
+    pointer-events: auto; /* Enable interaction */
+    display: block; /* Ensure it remains block */
+    color: black;
+}
+
+/* User details styling */
+.user-details {
+    padding: 12px 16px;
+    text-align: center; /* Center the text */
+}
+
+.user-details h2 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: black; /* Ensure text color is black */
+}
+
+.user-details h3 {
+    margin: 4px 0;
+    font-size: 0.9rem;
+    color: #777; /* Light gray color for email */
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+    color: black;
+    text-align: left; /* Align text to the left */
+}
+
+/* Menu item styling */
+.dropdown-container li {
+    padding: 12px 0; /* Adjust padding for vertical spacing */
+    border-bottom: 1px solid #eee;
+}
+
+/* Dropdown links, ensure links are black */
+.dropdown-container a {
+    text-decoration: none !important;
+    color: #000000 !important; /* Ensure text color is black */
+    display: block; /* Make the link a block element */
+    padding: 5px 14px; /* Add padding for better click area */
+}
+
+/* Hover effect for links */
+.dropdown-container a:hover {
+    background-color: rgb(10, 244, 10);
+    color: #000000 !important; /* Ensure hover color is black */
+    border-radius: 5px;
+}
+
 header {
   position: fixed;
   top: 0;
@@ -321,7 +426,10 @@ header::before {
   color: rgb(10, 244, 10);
   text-decoration: none;
   font-weight: 700;
+  margin-left: -380px;
 }
+
+
 
 .navbar a {
   font-size: 1.15rem;
@@ -369,6 +477,86 @@ header::before {
 .stu {
   color: rgb(10, 244, 10);
 }
+@media  (max-width:1230px){
+  .profile{
+    margin-left: 0px;
+  }
+  .logo{
+    margin-left: 0px;
+  }
+  
+}
+
+@media (max-width: 992px) {
+  
+  .header {
+    padding: 1.3rem 5%;
+  }
+  .search {
+    height: 80vh;
+    padding-top: 10%;
+  }
+  .search img {
+    height: 80vh;
+  }
+  .icons #close-icon {
+    display: none;
+  }
+  .navbar a::before {
+    display: none;
+  }
+  .overlay {
+    position: relative;
+    top: -10%;
+    padding-top: 0;
+  }
+  #searchbar {
+    height: 44px;
+  }
+  .navbar a {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-focus-ring-color: transparent;
+    outline: none;
+  }
+}
+
+@media (max-width: 1100px) {
+  .icons {
+    display: inline-flex;
+  }
+  #check:checked ~ .icons #menu-icon {
+    display: none;
+  }
+  .icons #close-icon {
+    display: none;
+  }
+  #check:checked ~ .icons #close-icon {
+    display: block;
+  }
+  .navbar {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(50px);
+    box-shadow: 0.5rem 1rem rgba(0, 0, 0, 0.1);
+    transition: 0.4s ease;
+    overflow: hidden;
+  }
+  #check:checked ~ .navbar {
+    height: 17.7rem;
+  }
+  .navbar a {
+    display: block;
+    font-size: 1.1rem;
+    margin: 1.5rem 0;
+    text-align: center;
+  }
+ 
+}
+
 .card-container {
   display: flex;
   flex-wrap: wrap;
@@ -457,74 +645,6 @@ header::before {
   }
 }
 
-@media (max-width: 992px) {
-  .header {
-    padding: 1.3rem 5%;
-  }
-  .search {
-    height: 80vh;
-    padding-top: 10%;
-  }
-  .search img {
-    height: 80vh;
-  }
-  .icons #close-icon {
-    display: none;
-  }
-  .navbar a::before {
-    display: none;
-  }
-  .overlay {
-    position: relative;
-    top: -10%;
-    padding-top: 0;
-  }
-  #searchbar {
-    height: 44px;
-  }
-  .navbar a {
-    -webkit-tap-highlight-color: transparent;
-    -webkit-focus-ring-color: transparent;
-    outline: none;
-  }
-}
-
-@media (max-width: 768px) {
-  .icons {
-    display: inline-flex;
-  }
-  #check:checked ~ .icons #menu-icon {
-    display: none;
-  }
-  .icons #close-icon {
-    display: none;
-  }
-  #check:checked ~ .icons #close-icon {
-    display: block;
-  }
-  .navbar {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-    height: 0;
-    background: rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(50px);
-    box-shadow: 0.5rem 1rem rgba(0, 0, 0, 0.1);
-    transition: 0.4s ease;
-    overflow: hidden;
-  }
-  #check:checked ~ .navbar {
-    height: 17.7rem;
-  }
-  .navbar a {
-    display: block;
-    font-size: 1.1rem;
-    margin: 1.5rem 0;
-    text-align: center;
-  }
- 
-}
 
 .vision{
   font:  52px solid bold;
@@ -836,8 +956,8 @@ button {
   padding: 15px;
 }
 
-button:hover {
-  color: #222;
+button:hover{
+  color: black;
 }
 
 button:focus {
@@ -1253,7 +1373,7 @@ button:focus {
 	margin-bottom: 5px;
 }
 
-.footer .logo {
+.footer .footer-logo {
     max-width: 100px;
     height: 50px;
     width: 50px;
