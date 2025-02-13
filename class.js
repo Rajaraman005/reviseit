@@ -246,3 +246,35 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+
+document.addEventListener("contextmenu", (event) => event.preventDefault()); // Disable right-click
+
+document.addEventListener("keydown", (event) => {
+  if (
+    event.key === "F12" || // Disable F12
+    (event.ctrlKey && event.shiftKey && event.key === "I") || // Disable Ctrl+Shift+I
+    (event.ctrlKey && event.shiftKey && event.key === "J") || // Disable Ctrl+Shift+J
+    (event.ctrlKey && event.key === "U") // Disable Ctrl+U (View Source)
+  ) {
+    event.preventDefault();
+  }
+});
+
+// Prevent Developer Tools opening using debugger
+setInterval(() => {
+  (function () {
+    debugger;
+  })();
+}, 100);
+
+document.addEventListener("DOMContentLoaded", function () {
+  const check = document.getElementById("check");
+  const navbar = document.querySelector(".navbar");
+
+  document.addEventListener("click", function (event) {
+    // Check if the click is outside the navbar and the checkbox is checked (menu open)
+    if (!navbar.contains(event.target) && !check.contains(event.target)) {
+      check.checked = false; // Close the menu
+    }
+  });
+});

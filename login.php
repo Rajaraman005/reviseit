@@ -1,9 +1,9 @@
 <?php
 // Database connection details
-$servername = "127.0.0.1";
-$username = "root";
-$password = "";
-$dbname = "reviseit";
+$servername = "localhost";
+$username = "reviseit_root";
+$password = "4CFY_sejyew_4ym";
+$dbname = "reviseit_database";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -38,16 +38,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['email'] = $email;          // Store user email in session
 
             // Redirect to dashboard
-            echo "<script>window.location.href = 'dashboard.php';</script>";
+            echo "<script>window.location.href = 'index.php';</script>";
         } else {
             // Incorrect password
             echo "<script>alert('Invalid password.');</script>";
-            echo "<script>window.location.href = 'index.html';</script>"; // Redirect back to login
+            echo "<script>window.location.href = 'signup.html';</script>"; // Redirect back to login
         }
     } else {
         // User not found
         echo "<script>alert('No user found with this email.');</script>";
-        echo "<script>window.location.href = 'index.html';</script>"; // Redirect back to login
+        echo "<script>window.location.href = 'signup.html';</script>"; // Redirect back to login
     }
 
     // Close resources

@@ -5,10 +5,10 @@ ini_set('display_errors', 1);
 
 session_start(); // Start the session
 
-$servername = "127.0.0.1";  
-$username = "root";       
-$password = "";          
-$dbname = "reviseit"; // Database name
+$servername = "localhost";
+$username = "reviseit_root";
+$password = "4CFY_sejyew_4ym";
+$dbname = "reviseit_database";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -60,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($result->num_rows > 0) {
         echo "<script>alert('Error: Email or phone number already exists.');</script>";
-        echo "<script>window.location.href = 'index.html';</script>";
+        echo "<script>window.location.href = 'login.html';</script>";
         exit();
     } else {
         // Prepare SQL query to insert data into the users table
@@ -78,7 +78,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['name'] = $name;
             $_SESSION['email'] = $email;
 
-            header("Location: dashboard.php"); // Redirect to dashboard
+            header("Location: index.php"); // Redirect to dashboard
             exit(); // Ensure no further code is executed
         } else {
             echo "Error executing statement: " . $stmt->error;

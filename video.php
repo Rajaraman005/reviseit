@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['name'])) {
-    header("Location: index.html"); // Redirect to login if not logged in
+    header("Location: signup.html"); // Redirect to login if not logged in
     exit;
 }
 
@@ -67,30 +67,35 @@ $email = isset($_SESSION['email']) ? $_SESSION['email'] : 'Not logged in';
   </header>
 
   <div id="video-container">
-    <div id="video-title">Loading video title...</div>
-    <video id="s3-video" controls controlslist="nodownload"
-      data-watermark="ReviseIt" data-dyntube-key="abcd1234">
-      Your browser does not support the video tag.
-    </video>
-    <div id="watermark">ReviseIt</div>
+    <div id="video-wrapper">
+      <div id="video-title">Loading video title...</div>
+      <video id="s3-video" controls controlslist="nodownload" data-watermark="ReviseIt" data-dyntube-key="abcd1234">
+        Your browser does not support the video tag.
+      </video>
+      <div id="watermark" class="watermark">ReviseIt</div>
+    </div>
   </div>
   <div id="notes-container"></div>
 
   <div id="footer" style="margin-top:30px;"></div>
-    <script>
-        fetch('footer.html')
-            .then(response => response.text())
-            .then(data => document.getElementById('footer').innerHTML = data);
-    </script>
+  <script>
+    fetch('footer.html')
+      .then(response => response.text())
+      .then(data => document.getElementById('footer').innerHTML = data);
+  </script>
 
   <script>
+   // Disable F12, Ctrl, and Shift keys
     document.addEventListener("keydown", function (event) {
       if (event.key === "F12" || event.ctrlKey || event.shiftKey) {
         event.preventDefault();
       }
     });
-    document.addEventListener('contextmenu', event => event.preventDefault());
 
+    // Disable right-click
+    document.addEventListener("contextmenu", event => event.preventDefault());
+
+    // Load video details from URL parameters
     window.addEventListener("load", function () {
       const video = document.getElementById("s3-video");
       const videoTitle = document.getElementById("video-title");
@@ -102,9 +107,7 @@ $email = isset($_SESSION['email']) ? $_SESSION['email'] : 'Not logged in';
       const notes = urlParams.get("notes");
 
       if (videoUrl) {
-        const encodedVideoUrl = btoa(videoUrl);
-        const decodedVideoUrl = atob(encodedVideoUrl);
-        video.src = decodedVideoUrl;
+        video.src = atob(btoa(videoUrl)); // Encoding & Decoding to prevent tampering
       } else {
         alert("No video URL found.");
       }
@@ -113,19 +116,36 @@ $email = isset($_SESSION['email']) ? $_SESSION['email'] : 'Not logged in';
       notesContainer.innerHTML = notes ? `<h3>Notes:</h3><p>${decodeURIComponent(notes)}</p>` : "<h3>Notes:</h3><p>No notes available.</p>";
     });
 
-    document.getElementById("s3-video").addEventListener('fullscreenchange', function () {
-      const watermark = document.getElementById('watermark');
-      const videoContainer = document.getElementById('video-container');
+    // Handle fullscreen and resize changes for watermark
+    const videoWrapper = document.getElementById("video-wrapper");
+    const watermark = document.getElementById("watermark");
+    const video = document.getElementById("s3-video");
+
+    function adjustWatermark() {
       if (document.fullscreenElement) {
-        watermark.style.position = 'fixed';
-        watermark.style.bottom = '10px';
-        watermark.style.right = '10px';
-        watermark.style.zIndex = '9999';
+        watermark.style.position = "fixed";
+        watermark.style.bottom = "10px";
+        watermark.style.right = "10px";
+        watermark.style.zIndex = "9999";
       } else {
-        watermark.style.position = 'absolute';
-        watermark.style.bottom = '10px';
-        watermark.style.right = '10px';
-        watermark.style.zIndex = '1';
+        watermark.style.position = "absolute";
+        watermark.style.bottom = "5px";
+        watermark.style.right = "10px";
+        watermark.style.zIndex = "1";
+      }
+    }
+
+    document.addEventListener("fullscreenchange", adjustWatermark);
+    window.addEventListener("resize", adjustWatermark);
+
+    // Toggle fullscreen on double-click
+    video.addEventListener("dblclick", function () {
+      if (!document.fullscreenElement) {
+        videoWrapper.requestFullscreen().catch(err => {
+          console.error("Error attempting to enable fullscreen mode:", err);
+        });
+      } else {
+        document.exitFullscreen();
       }
     });
   </script>

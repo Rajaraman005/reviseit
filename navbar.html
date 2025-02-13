@@ -1,16 +1,29 @@
-
-    <header class="header">
-     <a href="dashboard.html" class="logo">Reviseit</a>
-     <input type="checkbox" name="" id="check">
-     <label for="check" class="icons">
-        <i class='bx bx-menu-alt-left' id="menu-icon"></i>
-        <i class='bx bx-x' id="close-icon"></i>
-     </label>
-     <nav class="navbar">
-         <a href="dashboard.php">Home</a>
-         <a href="class.html">Classes</a>
-         <a href="#">Quiz</a>
-         <a href="#">Club</a>
-         <a href="#">Mentorship</a>
-    </nav>
+<header class="header">
+  <a href="dashboard.html" class="logo">Reviseit</a>
+  <input type="checkbox" name="" id="check" />
+  <label for="check" class="icons">
+    <i class="bx bx-menu-alt-left" id="menu-icon"></i>
+    <i class="bx bx-x" id="close-icon"></i>
+  </label>
+  <nav class="navbar">
+    <a href="dashboard.php">Home</a>
+    <a href="class.html">Classes</a>
+    <a href="#">Quiz</a>
+    <a href="#">Club</a>
+    <a href="#">Mentorship</a>
+  </nav>
 </header>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const check = document.getElementById("check");
+    const navbar = document.querySelector(".navbar");
+
+    document.addEventListener("click", function (event) {
+      // Check if the click is outside the navbar and the checkbox is checked (menu open)
+      if (!navbar.contains(event.target) && !check.contains(event.target)) {
+        check.checked = false; // Close the menu
+      }
+    });
+  });
+</script>

@@ -21,6 +21,26 @@
 //     disableDarkmode();
 //   }
 // });
+document.addEventListener("contextmenu", (event) => event.preventDefault()); // Disable right-click
+
+document.addEventListener("keydown", (event) => {
+  if (
+    event.key === "F12" || // Disable F12
+    (event.ctrlKey && event.shiftKey && event.key === "I") || // Disable Ctrl+Shift+I
+    (event.ctrlKey && event.shiftKey && event.key === "J") || // Disable Ctrl+Shift+J
+    (event.ctrlKey && event.key === "U") // Disable Ctrl+U (View Source)
+  ) {
+    event.preventDefault();
+  }
+});
+
+// Prevent Developer Tools opening using debugger
+setInterval(() => {
+  (function () {
+    debugger;
+  })();
+}, 100);
+
 
 document.addEventListener("DOMContentLoaded", () => {
   const profile = document.querySelector(".profile");
